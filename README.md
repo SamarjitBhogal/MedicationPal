@@ -8,7 +8,9 @@ This browser based web application to ...
 List team members and/or short bio's here... 
 * ...
 * Hi my name is Samarjit Bhogal. I am excited to start working on this project.
-* Hi, my name is Ben. Github is very interesting and i am excited to learn how to utilize it
+* Hi, my name is Ben. Github is very interesting and i am excited to learn how to 
+utilize it
+* Hi, my name is Xiaojuan Wang. I am excited to start workiing on this project.
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
