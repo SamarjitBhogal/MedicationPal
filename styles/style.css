@@ -41,3 +41,24 @@ body {
 .dropdown-item:hover {
     background-color: #f1faee;
 }
+
+#cat-h1 {
+    margin-top: 10%;
+    text-align: center;
+    vertical-align: middle;
+    color: #1d3557;
+    
+}
+#cat-button {
+   margin: 0 auto;
+   display: block;
+   background-color:#457B9D;
+   cursor: pointer;
+   
+}
+
+#cat-image {
+    display: block;
+    text-align: center;
+    
+}
