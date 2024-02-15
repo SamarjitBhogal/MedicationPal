@@ -1,1 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 
+.nav-color {
+    background-color: #a8dadc;
+}
+
+.navbar-toggler {
+    color: #1d3557;
+}
+
+.nav-item {
+    font-size: large;
+    font-weight: bold;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.bi-house-heart, .bi-calendar {
+    font-size: xx-large;
+    text-decoration: none;
+    color: #1d3557;
+}
+
+.dropdown-toggle {
+    color: black !important;
+}
+
+.dropdown-menu {
+    background-color: #e63946;
+    color: black;
+    font-size: large;
+}
+
+.dropdown-item {
+    font-weight: bolder;
+}
+
+.dropdown-item:hover {
+    background-color: #f1faee;
+}
