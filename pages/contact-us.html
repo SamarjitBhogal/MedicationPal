@@ -34,25 +34,40 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/contactStyle.css">
 
 </head>
 
 <body>
     <div id="nav-placeholder"></div>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
 
-
-    <!-- We can copy this page when making new pages so we can make consistent layouts - Sam -->
-    <!-- Just be sure to edit this when making a big change for all pages! -->
+    <div class="text-center">
+        <h1 class="mt-5 mb-5">Contact Us</h1>
+        <div class="container c-1d3557">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="contact-email" placeholder="name@example.com">
+                <label for="contact-email">Email address</label>
+            </div>
+            <div class="row g-2 mb-3">
+                <div class="col form-floating">
+                    <input type="text" class="form-control" id="contact-firstName" placeholder="First Name">
+                    <label for="contact-firstName">First Name</label>
+                </div>
+                <div class="col form-floating">
+                    <input type="text" class="form-control" id="contact-lastName" placeholder="Last Name">
+                    <label for="contact-lastName">Last Name</label>
+                </div>
+            </div>
+            <div class="form-floating mb-4">
+                <textarea class="form-control" placeholder="Leave a comment here" id="contact-desc"></textarea>
+                <label for="contact-desc">Comment</label>
+            </div>
+            <button type="submit" class="btn bg-1d3557 c-f1faee" id="contact-btn">Send</button>
+        </div>
+    </div>
 
     <div id="footer-placeholder"></div>
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
 
-    <!-- Link to scripts of your own -->
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebaseAPI_BBY06.js"></script>
     <script src="../scripts/navSkeleton.js"></script>
