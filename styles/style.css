@@ -3,20 +3,63 @@ body {
     padding: 0;
     width: 100vw;
     min-height: 100vh;
+    background-color: #f1faee;
+}
+
+/* Color Palette */
+
+/* Background: */
+.bg-e63946 {
+    background-color: #e63946;
+}
+
+.bg-f1faee {
+    background-color: #f1faee;
+}
+
+.bg-a8dadc {
+    background-color: #a8dadc;
+}
+
+.bg-457b9d {
+    background-color: #457B9D;
+}
+
+.bg-1d3557 {
+    background-color: #1d3557;
+}
+
+/* Color: */
+.c-e63946 {
+    color: #e63946;
+}
+
+.c-f1faee {
+    color: #f1faee;
+}
+
+.c-a8dadc {
+    color: #a8dadc;
+}
+
+.c-457b9d {
+    color: #457B9D;
+}
+
+.c-1d3557 {
+    color: #1d3557;
 }
 
 #cat-h1 {
     margin-top: 10%;
     text-align: center;
     vertical-align: middle;
-    color: #1d3557;
     
 }
 
 #cat-button {
    margin: 0 auto;
    display: block;
-   background-color:#457B9D;
    cursor: pointer;
    
 }
@@ -27,19 +70,12 @@ body {
     
 }
 
-#footer-placeholder {
-    background-color: #a8dadc;
-    
-    position: sticky;
+#footer-placeholder {position: sticky;
     top: 100%;
 }
 
-.nav-color {
-    background-color: #a8dadc;
-}
-
-.navbar-toggler {
-    color: #1d3557;
+.logo {
+    height: 40px;
 }
 
 .nav-item {
@@ -52,7 +88,6 @@ body {
 .bi-house-heart, .bi-calendar {
     font-size: xx-large;
     text-decoration: none;
-    color: #1d3557;
 }
 
 .dropdown-toggle {
@@ -60,7 +95,6 @@ body {
 }
 
 .dropdown-menu {
-    background-color: #e63946;
     color: black;
     font-size: large;
 }
