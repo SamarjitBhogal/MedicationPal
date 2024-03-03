@@ -5,7 +5,7 @@
  */
 
 function loadSkeleton() {
-    console.log($("#nav-placeholder").load("./components/navbar.html"));
-    console.log($("#footer-placeholder").load("./components/footer.html"));
+    console.log($("#nav-placeholder").load("../components/navbar.html"));
+    console.log($("#footer-placeholder").load("../components/footer.html"));
 }
 loadSkeleton();

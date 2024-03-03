@@ -1,0 +1,19 @@
+.entry-card {
+    background-color: grey;
+}
+
+.entry-card p {
+    text-align: center;
+}
+
+.doc-info {
+    background-color: grey;
+}
+
+.progress-card {
+    background-color: grey;
+}
+
+.progress-card button {
+    background-color: aqua;
+}
