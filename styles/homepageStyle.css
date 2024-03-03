@@ -1,5 +1,7 @@
 .entry-card {
-    background-color: grey;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .entry-card p {
@@ -7,13 +9,14 @@
 }
 
 .doc-info {
-    background-color: grey;
+    text-align: center;
 }
 
 .progress-card {
-    background-color: grey;
+    text-align: center;
 }
 
-.progress-card button {
-    background-color: aqua;
+.med-pal-progessbar {
+    width: 75%;
+    margin: 0 auto;
 }
