@@ -34,77 +34,21 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="../styles/style.css">
+    <!-- linking homepage sheet for same styling in progress-card -->
     <link rel="stylesheet" href="../styles/homepageStyle.css">
+    <link rel="stylesheet" href="../styles/progressStyle.css">
 </head>
 
 <body>
     <div id="nav-placeholder"></div>
 
-    <div>
-        <h1 class="text-center mt-3 c-1d3557">Hello, <span id="user-name">UserName</span></h1>
-        <div class="container d-flex justify-content-around mt-5 mb-5">
-            <div class="card entry-card bg-a8dadc m-2 p-4">
-                <i class="bi bi-capsule"></i>
-                <p>
-                    <span>NAME OF MEDICINE</span>
-                </p>
-                <p>
-                    <span>STATUS</span>
-                </p>
-            </div>
-            <div class="card entry-card bg-a8dadc m-2 p-4">
-                <i class="bi bi-capsule"></i>
-                <p>
-                    <span>NAME OF MEDICINE</span>
-                </p>
-                <p>
-                    <span>STATUS</span>
-                </p>
-            </div>
-        </div>
-
-        <div class="container d-flex justify-content-around mb-5">
-            <div class="card entry-card bg-a8dadc m-2 p-4">
-                <i class="bi bi-capsule"></i>
-                <p>
-                    <span>NAME OF MEDICINE</span>
-                </p>
-                <p>
-                    <span>STATUS</span>
-                </p>
-            </div>
-            <div class="card entry-card bg-a8dadc m-2 p-4">
-                <i class="bi bi-capsule"></i>
-                <p>
-                    <span>NAME OF MEDICINE</span>
-                </p>
-                <p>
-                    <span>STATUS</span>
-                </p>
-            </div>
-        </div>
-        <div class="doc-info bg-a8dadc p-4 mb-5 rounded-1">
-            <p>
-                <span>
-                    Your doctor's information:
-                </span>
-            </p>
-            <p>
-                <span>
-                    Dr. Hermit Krab<br>
-                    (888)-888-8888<br>
-                    5555 55th AVE V1P 9KO
-                </span>
-            </p>
-        </div>
-        <div class="progress-card bg-a8dadc p-4 rounded-1">
-            <p>
-                <span>
-                    Your progress so far:
-                </span>
-            </p>
+    <div class="mt-5">
+        <h1 class="text-center c-1d3557 mb-5">Your Progess, <span id="user-name">UserName</span></h1>
+        <div class="progress-card bg-a8dadc c-1d3557 mb-5 p-4 rounded-1 text-center">
+            <h3 class="mb-3">At a glance</h3>
             <div class="progress med-pal-progessbar bg-f1faee mb-2" role="progressbar"
-                aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="progess-status">
+                aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                id="progess-status">
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-457b9d" style="width: 75%"></div>
             </div>
             <p>
@@ -112,7 +56,28 @@
                     Well done! Keep up the good work!
                 </span>
             </p>
-            <button type="button" class="btn bg-1d3557 c-f1faee">View details</button>
+        </div>
+        <div class="history-card c-1d3557 bg-a8dadc mb-5 p-4 rounded-1 text-center">
+            <h3 class="text-center">History</h3>
+            <div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle bg-457b9d c-f1faee" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Filter by:
+                    </button>
+                    <ul class="dropdown-menu bg-f1faee">
+                        <li><a class="dropdown-item" href="#" id="prog-day">Day</a></li>
+                        <li><a class="dropdown-item" href="#" id="prog-week">Week</a></li>
+                        <li><a class="dropdown-item" href="#" id="prog-month">Month</a></li>
+                    </ul>
+                </div>
+                <div id="display-history">
+                    <div class="week-card">
+                        Insert default weekly view past entries of any. This area should change format if filtered. 
+                        (if no entries put a place holder message)
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
