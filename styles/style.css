@@ -6,6 +6,10 @@ body {
     background-color: #f1faee;
 }
 
+.login-panel a {
+    text-decoration: none;
+}
+
 /* Color Palette */
 
 /* Background: */
@@ -90,7 +94,7 @@ body {
     font-weight: bolder;
 }
 
-.login-page {
+.login-panel {
     text-align: center;
 }
 
