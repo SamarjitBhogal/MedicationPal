@@ -113,3 +113,7 @@ body {
 .table-active {
     background-color: #f1faee; /* Active row background color */
 }
+
+.col {
+    align-items: center;
+}
