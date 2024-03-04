@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>MedicationPal</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <meta name="comp1800 template" content="My 1800 App">
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap Library CSS CDN go here -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- Boostrap Library JS CDN  go here -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <!-- Other libraries go here -->
+  <!-- This is the CDN for bootstrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Firebase libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+  <!-- Link to styles of your own -->
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/faqStyle.css">
+</head>
+
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="container">
+    <div class="w-95 w-md-75 w-lg-60 w-xl-55 mx-auto mb-6 text-center">
+        <br>
+    <h2 class="display-18 display-md-16 display-lg-14 mb-0">Your schedule for the week <span class="text-primary">    </span></h2>
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+    <div class="schedule-table">
+    <table class="table bg-white">
+    <thead>
+    <tr>
+    <th>Routine</th>
+    <th>10 am</th>
+    <th>11 am</th>
+    <th>03 pm</th>
+    <th>05 pm</th>
+    <th class="last">07 pm</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td class="day">Sunday</td>
+    <td class="active">
+    <h4>Medication 1
+    </h4>
+    <p>10 am - 11 am</p>
+    <div class="hover">
+    </div>
+    </td>
+    <td></td>
+    <td class="active">
+    <h4>Medication 2</h4>
+    <p>03 pm - 04 pm</p>
+    <div class="hover">
+    </div>
+    </td>
+    <td class="active">
+    <h4>Medication 3</h4>
+    <p>05 pm - 06 pm</p>
+    <div class="hover">
+    <span>Charles King</span>
+    </div>
+    </td>
+    <td></td>
+    </tr>
+    <tr>
+    <td class="day">Monday</td>
+    <td></td>
+    <td class="active">
+    </div>
+    </td>
+    <td class="active">
+    <div class="hover">
+    </div>
+    </td>
+    <td></td>
+    <td class="active">
+    <h4>Medication 4</h4>
+    <p>07 pm - 08 pm</p>
+    <div class="hover">
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td class="day">Tuesday</td>
+    <td class="active">
+    <h4>Medication 1</h4>
+    <p>10 am - 11 am</p>
+    <div class="hover">
+    </div>
+    </td>
+    <td></td>
+    <td></td>
+    <td class="active">
+    </div>
+    </td>
+    <td class="active">
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td class="day">Wednesday</td>
+    <td class="active">
+    </div>
+    </td>
+    <td></td>
+    <td class="active">
+    </div>
+    </td>
+    <td></td>
+    <td class="active">
+    <h4>Medication 4</h4>
+    <p>07 pm - 08 pm</p>
+    <div class="hover">
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td class="day">Thursday</td>
+    <td></td>
+    <td class="active">
+    </div>
+    </td>
+    <td></td>
+    <td class="active">
+    <h4>Medication 3</h4>
+    <p>05 pm - 06 pm</p>
+    <div class="hover">
+    <span>Edward Garcia</span>
+    </div>
+    </td>
+    <td></td>
+    </tr>
+    <tr>
+    <td class="day">Friday</td>
+    <td class="active">
+    <h4>Medication 1</h4>
+    <p>10 am - 11 am</p>
+    <div class="hover">
+    <span>Jackie Potts</span>
+    </div>
+    </td>
+    <td></td>
+    <td class="active">
+    <h4>Medication 2</h4>
+    <p> 05 - 06 pm</p>
+    <div class="hover">
+    </div>
+    </td>
+    <td></td>
+    <td class="active">
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td class="day">Satarday</td>
+    <td></td>   
+    <td></td>
+    <td class="active">
+    </div>
+    </td>
+    <td class="active">
+
+    </div>
+    </td>
+    <td></td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../scripts/script.js"></script>
+  <script src="../scripts/firebaseAPI_BBY06.js"></script>
+  <script src="../scripts/navSkeleton.js"></script>
+</body>
+
+</html>
