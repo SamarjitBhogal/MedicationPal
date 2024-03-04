@@ -90,6 +90,9 @@ body {
     font-weight: bolder;
 }
 
+.login-page {
+    text-align: center;
+}
 
 .table th {
     background-color: #a8dadc; /* Header background color */
