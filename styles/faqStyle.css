@@ -1,0 +1,4 @@
+.accordion-button, .accordion-item {
+    border-radius: 10px !important;
+    border: none;
+}
