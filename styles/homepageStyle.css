@@ -10,10 +10,14 @@
 
 .doc-info {
     text-align: center;
+    width: 75%;
+    margin: 0 auto;
 }
 
 .progress-card {
     text-align: center;
+    width: 75%;
+    margin: 0 auto;
 }
 
 .med-pal-progessbar {

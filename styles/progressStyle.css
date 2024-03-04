@@ -1,0 +1,12 @@
+.history-card {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.history-card .dropdown-toggle {
+    border: none;
+}
+
+.history-card a:hover {
+    background-color: #457B9D;
+}
