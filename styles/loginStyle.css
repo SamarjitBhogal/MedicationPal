@@ -1,0 +1,33 @@
+#cat-h2 {
+    text-align: center;
+    vertical-align: middle;
+    color: black;
+    
+}
+
+
+ .login{
+    color: black;
+    text-align: center;
+  
+
+ }
+ .login input{
+    display: block; 
+    margin: 20px auto;
+    text-align: center;
+    background: none;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bolder;
+    border-radius: 22px;
+    outline: none;
+    color: black;
+ }
+
+
+ .login_image{
+    width: 200px; 
+    height: auto; 
+    padding-bottom: 20px;
+ }
