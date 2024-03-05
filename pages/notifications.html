@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MedicationPal</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Boostrap Library JS CDN  go here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Other libraries go here -->
+    <!-- This is the CDN for bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Firebase libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="/styles/notification.css">
+
+</head>
+
+<body>
+    <div id="nav-placeholder"></div>
+    
+    <div id="container">
+        <div class="top">
+            <h4>Notification Type</h4>
+        </div>
+
+
+        <div class="middle1">
+            <h5>Push Notifications</h5>
+            <br>
+            <input type="radio">
+            <label for="">Banner + Sound</label>
+            <br>
+            <input type="radio">
+            <label for="">Banner + Silent</label>
+            <br>
+            <input type="radio">
+            <label for="">No Notification</label>
+        </div>
+
+        <div class="middle2">
+            <h5>Email Notification</h5>
+            <br>
+            <label for="">Email: </label>
+            <input type="email"> &nbsp; <input type="checkbox">
+            <br>
+            <br>
+            <input type="radio">
+            <label for="">No Notification</label>
+        </div>
+
+        <div class="bottom">
+            <form>
+            <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+    
+
+
+
+    <div id="footer-placeholder"></div>
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/firebaseAPI_BBY06.js"></script>
+    <script src="../scripts/navSkeleton.js"></script>
+</body>
+
+</html>
