@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Firebase libraries -->
+    <script src="./scripts/Firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -33,40 +34,33 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
     <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css">
-
-    <!-- this is Login css link-->
-    <link rel="stylesheet" href="./styles/loginStyle.css">
-
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/contactStyle.css">
 
 </head>
 
 <body>
     <div id="nav-placeholder"></div>
-
-    <div class="login-panel mt-5">
-        <h1 id="cat-h1" class="c-1d3557">Being Healthy is never too be late</h1>
-        <figure class="text-center">
-            <blockquote class="blockquote">
-                <br>
-                <p>MedicationPal is a free application to help users with keeping their bodies healthy.</p>
-            </blockquote>
-            <figcaption class="blockquote-footer">
-                Are you ready? <cite title="Source Title">Let's get started.</cite>
-            </figcaption>
-        </figure>
-        <br>
-        <!--this image needs to be resized:-->
-        <div style="text-align: center; opacity: 0.5;"><img src="./images/image.webp" alt="image"></div>
-        <button type="button" class="btn btn-primary btn-lg bg-457b9d mt-4"><a href="./pages/login.html"
-                class="c-f1faee">Login</a></button>
+    
+    <div class="container text-center py-4">
+        <div class="rounded-circle overflow-hidden">
+            <img class="responsive" src="./images/elmo.jpg" alt="">
+        </div>
+        <h1>Welcome to MedicationPal</h1>
+        <a href="login.html" class="btn btn-warning" role="button">Log in</a>
     </div>
+    <div class="container">
+        <h1>Let's Login!</h1>
+    </div>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
 
     <div id="footer-placeholder"></div>
 
-    <script src="./scripts/script.js"></script>
-    <script src="./scripts/firebaseAPI_BBY06.js"></script>
-    <script src="./scripts/navSkeleton.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/firebaseAPI_BBY06.js"></script>
+    <script src="../scripts/authentication.js"></script>
+    <script src="../scripts/navSkeleton.js"></script>
 </body>
 
 </html>

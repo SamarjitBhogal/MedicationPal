@@ -6,6 +6,10 @@ body {
     background-color: #f1faee;
 }
 
+.login-panel a {
+    text-decoration: none;
+}
+
 /* Color Palette */
 
 /* Background: */
@@ -47,7 +51,7 @@ body {
 }
 
 .c-1d3557 {
-    background-color: #1d3557;
+    color: #1d3557;
 }
 
 #cat-image {
@@ -56,7 +60,8 @@ body {
     
 }
 
-#footer-placeholder {position: sticky;
+#footer-placeholder {
+    position: sticky;
     top: 100%;
 }
 
@@ -89,6 +94,9 @@ body {
     font-weight: bolder;
 }
 
+.login-panel {
+    text-align: center;
+}
 
 .table th {
     background-color: #a8dadc; /* Header background color */
