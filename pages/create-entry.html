@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Firebase libraries -->
-    <script src="./scripts/Firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -35,33 +34,77 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/contactStyle.css">
+
+    <link rel="stylesheet" href="/styles/create entry.css">
 
 </head>
 
 <body>
     <div id="nav-placeholder"></div>
-    
-    <div class="container text-center py-4">
-        <div class="rounded-circle overflow-hidden">
-            <img class="responsive" src="./images/elmo.jpg" alt="">
+    <br>
+    <div id="container">
+        <div class="top">
+            <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name: </label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Type: </label>
+                  <input type="text" class="form-control" id="exampleInputPassword1"> 
+                </div>
+              </form>
+              
         </div>
-        <h1>Welcome to MedicationPal</h1>
-        <br>
-        <div id="firebaseui-auth-container"></div>
 
-        <br>
-        <!-- <a href="login.html" class="btn btn-warning role="button">Log in</a> -->
+        <div class="middle">
+            <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Date: </label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Time: </label>
+                  <input type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div>
+                    <label for="exampleInputPassword1" class="form-label">Decription: </label>
+                    <textarea name="textarea" id="textarea" cols="30" rows="5"></textarea>
+                </div>
+                
+               
+              </form>
+
+        </div>
+        <div class="bottom">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <form>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+            
+        </div>
     </div>
-    <div class="container">
-        <h1 class="text-center">Let's Login!</h1>
-    </div>
+    
+    
+
+
+
 
     <div id="footer-placeholder"></div>
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
 
+    <!-- Link to scripts of your own -->
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebaseAPI_BBY06.js"></script>
-    <script src="../scripts/authentication.js"></script>
     <script src="../scripts/navSkeleton.js"></script>
 </body>
 
