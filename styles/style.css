@@ -1,9 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100vw;
     min-height: 100vh;
     background-color: #f1faee;
+}
+
+a {
+    text-decoration: none;
 }
 
 .login-panel a {
