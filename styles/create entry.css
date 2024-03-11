@@ -32,3 +32,13 @@
     box-shadow: 10px;
     width: 300px;
 }
+.alert{
+    width: 100%;
+    background: green;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    display: none;
+}

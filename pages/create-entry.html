@@ -40,72 +40,52 @@
 </head>
 
 <body>
+  <form action="" id="medicationForm">
     <div id="nav-placeholder"></div>
     <br>
     <div id="container">
         <div class="top">
-            <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Name: </label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Type: </label>
-                  <input type="text" class="form-control" id="exampleInputPassword1"> 
-                </div>
-              </form>
-              
+            <div class="mb-3">
+              <label for="name" class="form-label">Name: </label>
+              <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="type" class="form-label">Type: </label>
+              <input type="text" class="form-control" id="type">
+            </div>
         </div>
 
-        <div class="middle">
-            <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Date: </label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Time: </label>
-                  <input type="text" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div>
-                    <label for="exampleInputPassword1" class="form-label">Decription: </label>
-                    <textarea name="textarea" id="textarea" cols="30" rows="5"></textarea>
-                </div>
-                
-               
-              </form>
-
+        <div class="middle" >
+            <div class="mb-3">
+              <label for="date" class="form-label">Date: </label>
+              <input type="text" class="form-control" id="date" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Time: </label>
+              <input type="text" class="form-control" id="time">
+            </div>
+            <div>
+                <label for="desc" class="form-label">Description: </label>
+                <textarea id="desc" class="form-control" rows="5"></textarea>
+            </div>
         </div>
+        
         <div class="bottom">
             <br>
             <br>
             <br>
             <br>
             <br>
-            <br>
-            <br>
 
-            <form>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </form>
-            
+            <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </div>
-    
-    
+  </form>
+  <div id="footer-placeholder"></div>
 
-
-
-
-    <div id="footer-placeholder"></div>
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
-    <script src="../scripts/script.js"></script>
-    <script src="../scripts/firebaseAPI_BBY06.js"></script>
-    <script src="../scripts/navSkeleton.js"></script>
+  <!-- Your Firebase and other scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script src="../scripts/firebaseAPI_BBY06.js"></script>
+  <script src="../scripts/navSkeleton.js"></script>
+  <script src="../scripts/script.js"></script>
 </body>
-
-</html>
