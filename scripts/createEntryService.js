@@ -1,47 +1,41 @@
-// Reference database
-var medicationFormDB = firebase.database().ref("medicationForm");
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the Firestore database
+const db = firebase.firestore();
+
+// Reference to the collection
+const colRef = db.collection('MedicationInfo');
 
 // Event listener for form submission
-document.getElementById("medicationForm").addEventListener("submit", submitForm);
+document.getElementById('medicationForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
 
-// Prevent default action of form
-//when you refresh it doesnt automatically deletes everything (or something)
-function submitForm(e) {
-    e.preventDefault();
+    console.log("Form submitted"); // Debugging
 
-    // Get inputs
-    var name = getElementval("name");
-    var type = getElementval("type");
-    var date = getElementval("date");
-    var time = getElementval("time");
-    var desc = getElementval("desc");
+    // Get form data
+    const name = document.getElementById('name').value;
+    const type = document.getElementById('type').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const desc = document.getElementById('desc').value;
 
-    //call function
-    saveMessages(name, type, date, time, desc);   
+    console.log("Form data:", name, type, date, time, desc); // Debugging
 
-    //create alert
-    document.get
-}
-
-//save message to firebase
-const saveMessages = (name, type, date, time, desc) => {
-    //push these values into our database
-    var newMedicationForm = medicationFormDB.push();
-
-    newMedicationForm.set({
-        name : name,
-        type : type,
-        date : date,
-        time : time,
-        desc : desc,
-
+    // Add data to Firestore
+    colRef.add({
+        name: name,
+        type: type,
+        date: date,
+        time: time,
+        desc: desc
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+        // Reset the form
+        document.getElementById('medicationForm').reset();
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
     });
-    //reset form
-    document.getElementById("medicationForm").reset();
-
-};
-
-// Get value of each field
-const getElementval = (id) => {
-    return document.getElementById(id).value;
-}
+});
