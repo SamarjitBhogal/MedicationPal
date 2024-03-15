@@ -1,9 +1,3 @@
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Get a reference to the Firestore database
-const db = firebase.firestore();
-
 // Reference to the collection
 const colRef = db.collection('MedicationInfo');
 
