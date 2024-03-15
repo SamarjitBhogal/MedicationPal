@@ -68,6 +68,12 @@ a {
     top: 100%;
 }
 
+#create-btn {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+
 .logo {
     height: 40px;
 }
@@ -77,6 +83,10 @@ a {
     font-weight: bold;
     margin-left: 2%;
     margin-right: 2%;
+}
+
+.navbar-toggler {
+    border: none;
 }
 
 .bi-house-heart, .bi-calendar {
