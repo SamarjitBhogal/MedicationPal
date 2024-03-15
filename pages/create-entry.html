@@ -2,85 +2,125 @@
 <html lang="en">
 
 <head>
-    <title>MedicationPal</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <meta name="comp1800 template" content="My 1800 App">
+  <title>MedicationPal</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <meta name="comp1800 template" content="My 1800 App">
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap Library CSS CDN go here -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Bootstrap Library CSS CDN go here -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <!-- Boostrap Library JS CDN  go here -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+  <!-- Boostrap Library JS CDN  go here -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 
-    <!-- Other libraries go here -->
-    <!-- This is the CDN for bootstrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Other libraries go here -->
+  <!-- This is the CDN for bootstrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Firebase libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <!-- Firebase libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
-    <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="../styles/style.css">
-
-    <link rel="stylesheet" href="/styles/create entry.css">
+  <!-- Link to styles of your own -->
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="/styles/createEntryStyle.css">
 
 </head>
 
 <body class="hot-bar-m">
-  <form action="" id="medicationForm">
-    <div id="nav-placeholder"></div>
-    <br>
-    <div id="container">
-        <div class="top">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name: </label>
-              <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="type" class="form-label">Type: </label>
-              <input type="text" class="form-control" id="type">
-            </div>
-        </div>
+  <div id="nav-placeholder"></div>
 
-        <div class="middle" >
-            <div class="mb-3">
-              <label for="date" class="form-label">Date: </label>
-              <input type="text" class="form-control" id="date" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="time" class="form-label">Time: </label>
-              <input type="text" class="form-control" id="time">
-            </div>
-            <div>
-                <label for="desc" class="form-label">Description: </label>
-                <textarea id="desc" class="form-control" rows="5"></textarea>
-            </div>
+  <div class="container">
+    <h1 class="text-center mt-5 mb-4 c-1d3557">Create a Medication Entry</h1>
+    <form class="c-1d3557" action="" id="medicationForm">
+      <div class="card bg-a8dadc p-4 mb-4">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name: </label>
+          <input type="text" class="form-control" id="name" required>
         </div>
-        
-        <div class="bottom">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+        <div class="mb-3">
+          <label for="type" class="form-label">Type: </label>
+          <input type="text" class="form-control" id="type" required>
+        </div>
+        <div>
+          <label for="desc" class="form-label">Description: </label>
+          <textarea id="desc" class="form-control" rows="5"></textarea>
+        </div>
+      </div>
+      <div class="card bg-a8dadc p-4 mb-4">
+        <div class="mb-3">
+          <label for="date" class="form-label">Select Day(s): </label>
+          <input type="text" class="form-control" id="date" required>
+          <!-- <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkSun" value="sun">
+            <label class="form-check-label" for="checkSun">Sun</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkMon" value="mon">
+            <label class="form-check-label" for="checkMon">Mon</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkTues" value="tues">
+            <label class="form-check-label" for="checkTues">Tues</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkWed" value="wed">
+            <label class="form-check-label" for="checkWed">Wed</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkThurs" value="thurs">
+            <label class="form-check-label" for="checkThurs">Thurs</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkFri" value="fri">
+            <label class="form-check-label" for="checkFri">Fri</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkSat" value="sat">
+            <label class="form-check-label" for="checkSat">Sat</label>
+          </div> -->
+        </div>
+        <div class="mb-3">
+          <label for="time" class="form-label">Select Time(s): </label>
+          <input type="text" class="form-control" id="time" required>
+        </div>
+        <div class="mb-3">
+          <label for="time" class="form-label">Repeating: </label>
+          <select class="form-select" aria-label="Default select example" id="repeat">
+            <option selected value="dnr">Does not repeat</option>
+            <option value="week">Weekly</option>
+            <option value="month">Monthly</option>
+            <option value="daily">Daily</option>
+          </select>
+        </div>
+      </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-    </div>
-  </form>
+      <!-- TODO: Image linkage -->
+      <div class="card bg-a8dadc p-4">
+        <p class="text-center">Upload prescription or image of medication (optional):</p>
+        <div class="d-flex justify-content-evenly mb-3"><i class="bi bi-camera c-1d3557"></i><button type="button"
+            class="btn btn-outline-primary file-btn c-1d3557">Choose File</button></div>
+        <div class="d-flex justify-content-evenly"><i class="bi bi-camera c-1d3557"></i><button type="button"
+            class="btn btn-outline-primary file-btn c-1d3557">Choose File</button></div>
+      </div>
+
+      <div class="mt-3 text-center">
+        <button type="submit" class="btn btn-primary bg-1d3557 c-f1faee remove-border save-btn">Save</button>
+      </div>
+    </form>
+  </div>
+
   <div id="footer-placeholder"></div>
 
   <!-- Your Firebase and other scripts -->

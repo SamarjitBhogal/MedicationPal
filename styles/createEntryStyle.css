@@ -1,0 +1,12 @@
+.file-btn {
+    border-color: #1d3557;
+}
+
+.file-btn:hover, .save-btn:hover {
+    background-color: #1d3557;
+    border: none;
+}
+
+.bi-camera {
+    font-size: xx-large;
+}

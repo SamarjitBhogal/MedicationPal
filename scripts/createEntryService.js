@@ -16,8 +16,11 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
 
     console.log("Form data:", name, type, date, time, desc); // Debugging
 
+    const userID = firebase.auth().currentUser.uid;
+
     // Add data to Firestore
     colRef.add({
+        user: userID,
         name: name,
         type: type,
         date: date,

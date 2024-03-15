@@ -138,6 +138,11 @@ text-align: center;
     width: 80vw;
 }
 
-.btn {
+.remove-border {
+    border: none;
+}
+
+.login-btn:hover {
+    background-color: #1d3557;
     border: none;
 }
