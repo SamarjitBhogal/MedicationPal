@@ -9,6 +9,10 @@ a {
     text-decoration: none;
 }
 
+.hot-bar-m {
+    margin-bottom: 90px;
+}
+
 .login-panel a {
     text-decoration: none;
 }
@@ -68,10 +72,11 @@ a {
     top: 100%;
 }
 
-#create-btn {
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
+#hot-bar {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
 }
 
 .logo {

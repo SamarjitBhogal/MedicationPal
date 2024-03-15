@@ -14,7 +14,7 @@ function loadSkeleton() {
         if (user) {
             // User is signed in.
             console.log($("#nav-placeholder").load("../components/navbar.html"));
-            console.log($("#footer-placeholder").load("../components/footer.html"));
+            console.log($("#footer-placeholder").load("../components/hot-bar.html"));
         } else {
             // No user is signed in.
             console.log($("#nav-placeholder").load("../components/navbar_before_login.html"));
