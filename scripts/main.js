@@ -1,3 +1,4 @@
+/* displays the name of the user in elements with ID: user-name */
 function getNameFromAuth() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
