@@ -25,7 +25,8 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         type: type,
         date: date,
         time: time,
-        desc: desc
+        desc: desc,
+        status: false
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
