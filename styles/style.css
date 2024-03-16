@@ -116,16 +116,6 @@ a {
     text-align: center;
 }
 
-.table th {
-    background-color: #a8dadc; /* Header background color */
-}
-.table td {
-    background-color: #a8dadc; /* Body background color */
-}
-.table-active {
-    background-color: #f1faee; /* Active row background color */
-}
-
 .col {
     align-items: center;
 }

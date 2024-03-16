@@ -35,3 +35,12 @@
     width: 75%;
     margin: 0 auto;
 }
+
+.accordion-button, .accordion-item {
+    border-radius: 10px !important;
+    border: none;
+}
+
+td, th {
+    background-color: #f1faee !important;
+}
