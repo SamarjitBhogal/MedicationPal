@@ -71,10 +71,23 @@
                         <li><a class="dropdown-item" href="#" id="prog-month">Month</a></li>
                     </ul>
                 </div>
+                <br>
                 <div id="display-history">
                     <div class="week-card">
-                        Insert default weekly view past entries of any. This area should change format if filtered. 
-                        (if no entries put a place holder message)
+                        <table class="table" >
+                            <tbody id="Progress-go-here">
+                              <tr class="table-active">
+                                <th>Label</th>
+                                <th>Name</th>
+                                <th>Type</th>                      
+                                <th>Date</th>
+                                <th>Time</th>
+                              </tr>
+                              <tr>
+                    
+                              </tr>
+                            </tbody>
+                          </table>
                     </div>
                 </div>
             </div>
@@ -85,6 +98,7 @@
 
     <script src="../scripts/firebaseAPI_BBY06.js"></script>
     <script src="../scripts/navSkeleton.js"></script>
+    <script src="../scripts/readProgress.js"></script>
 </body>
 
 </html>
