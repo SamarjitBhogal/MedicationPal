@@ -2,8 +2,13 @@
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
-   
-    db.collection(collection).get()   //the collection called "MedicationInfo"
+    var userid;
+    firebase.auth().onAuthStateChanged(user => {
+        userid = user.uid;
+        console.log(userid);   
+        
+    db.collection(collection).where("user","==",userid).get()   //the collection called "MedicationInfo"
+    //db.collection(collection).get()   //the collection called "MedicationInfo"
         .then(allEntries => {
             var i = 1;  //Optional: if you want to have a unique ID for each hike
             allEntries.forEach(doc => { //iterate thru each doc
@@ -22,19 +27,16 @@ function displayCardsDynamically(collection) {
                 td2.innerHTML = type;
                 var td3 = tr.appendChild(document.createElement('td'));
                 td3.innerHTML = desc;
+                var td4 = tr.appendChild(document.createElement('td'));
+                td4.innerHTML = date;
+                var td5 = tr.appendChild(document.createElement('td'));
+                td5.innerHTML = time;
                 console.log(name);
-                //update title and text and image
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
-
-                //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(tr);
-
                 i++;   //Optional: iterate variable to serve as unique ID
             })
         })
+    });
 }
 
 displayCardsDynamically("MedicationInfo");  //input param is the name of the collection
