@@ -37,3 +37,17 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         console.error("Error adding document: ", error);
     });
 });
+
+/* Color changing for the day buttons: */
+const dayBtn = document.querySelectorAll(".day-btn");
+
+dayBtn.forEach(element => {
+    element.addEventListener('click', () => {
+        if (element.style.backgroundColor === "#457B9D") {
+            element.style.backgroundColor = "#1d3557";
+        } else {
+            element.style.backgroundColor = "#457B9D";
+        }
+        element.style.color = "#f1faee";
+    });
+});
