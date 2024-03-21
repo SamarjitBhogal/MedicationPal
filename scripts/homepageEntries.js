@@ -6,10 +6,6 @@ function displayEntries() {
             var markerNum = 1;
             var completedNum = 1;
             userEntries.forEach((entry) => {
-                var name = entry.data().name;  
-                var type = entry.data().type; 
-                var date = entry.data().date;  
-                var time = entry.data().time; 
                 var status = entry.data().status; 
 
                 if (!status) {

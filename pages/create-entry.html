@@ -46,7 +46,7 @@
     <form class="c-1d3557" action="" id="medicationForm">
       <div class="card bg-a8dadc p-4 mb-4">
         <div class="mb-3">
-          <label for="name" class="form-label">Name: </label>
+          <label for="name" class="form-label">Medication Name: </label>
           <input type="text" class="form-control" id="name" required>
         </div>
         <div class="mb-3">
@@ -61,7 +61,6 @@
       <div class="card bg-a8dadc p-4 mb-4">
         <div class="mb-3">
           <label for="date" class="form-label">Select Day(s): </label>
-          <input type="text" class="form-control" id="date" required>
           <div class="d-flex justify-content-evenly align-items-center">
             <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="sun">S</button>
             <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="mon">M</button>
@@ -74,18 +73,16 @@
         </div>
         <div class="mb-3">
           <label for="time" class="form-label">Select Time(s): </label>
-          <input type="text" class="form-control" id="time" required>
           <div class="cs-form">
-            <input type="time" class="form-control" value="10:05 AM" />
+            <input id="time" type="time" class="form-control"/>
           </div>
         </div>
         <div class="mb-3">
           <label for="time" class="form-label">Repeating: </label>
           <select class="form-select" aria-label="Default select example" id="repeat">
-            <option selected value="dnr">Does not repeat</option>
-            <option value="week">Weekly</option>
-            <option value="month">Monthly</option>
+            <option selected value="week">Weekly</option>
             <option value="daily">Daily</option>
+            <option value="dnr">Does not repeat</option>
           </select>
         </div>
       </div>
@@ -93,10 +90,20 @@
       <!-- TODO: Image linkage -->
       <div class="card bg-a8dadc p-4">
         <p class="text-center">Upload prescription or image of medication (optional):</p>
-        <div class="d-flex justify-content-evenly mb-3"><i class="bi bi-camera c-1d3557"></i><button type="button"
-            class="btn btn-outline-primary file-btn c-1d3557">Choose File</button></div>
-        <div class="d-flex justify-content-evenly"><i class="bi bi-camera c-1d3557"></i><button type="button"
-            class="btn btn-outline-primary file-btn c-1d3557">Choose File</button></div>
+        <div class="d-flex justify-content-evenly mb-3">
+          <i class="bi bi-camera c-1d3557"></i>
+          <div class="d-flex align-items-center">
+            <input type="file" id="medImg-1" accept="image/png, image/jpeg" onchange="uploadImage()">
+            <label for="medImg-1" class="file-btn">Choose Image</label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-evenly">
+          <i class="bi bi-camera c-1d3557"></i>
+          <div class="d-flex align-items-center">
+            <input type="file" id="medImg-2" accept="image/png, image/jpeg" onchange="uploadImage()">
+            <label for="medImg-2" class="file-btn">Choose Image</label>
+          </div>
+        </div>
       </div>
 
       <div class="mt-3 text-center">
@@ -107,7 +114,6 @@
 
   <div id="footer-placeholder"></div>
 
-  <!-- Your Firebase and other scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
   <script src="../scripts/firebaseAPI_BBY06.js"></script>
   <script src="../scripts/createEntryService.js"></script>
