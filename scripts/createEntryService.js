@@ -1,3 +1,17 @@
+/* Color changing on select for the day buttons: */
+const dayBtn = document.querySelectorAll(".day-btn");
+
+dayBtn.forEach(element => {
+    element.addEventListener('click', () => {
+        if (element.getAttribute("aria-pressed") == "false") {
+            element.style.backgroundColor = "#457B9D";
+        } else {
+            element.style.backgroundColor = "#1d3557";
+        }
+        element.style.color = "#f1faee";
+    });
+});
+
 // Reference to the collection
 const colRef = db.collection('MedicationInfo');
 
@@ -10,22 +24,33 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
     // Get form data
     const name = document.getElementById('name').value;
     const type = document.getElementById('type').value;
-    const date = document.getElementById('date').value;
     const time = document.getElementById('time').value;
     const desc = document.getElementById('desc').value;
+    const repeat = document.getElementById('repeat').value;
+    const date = "temporary date placeholder";
+    var days = "";
 
-    console.log("Form data:", name, type, date, time, desc); // Debugging
+    dayBtn.forEach(element => {
+        if (element.getAttribute("aria-pressed") == "true") {
+            days += "-" + element.value;
+        }        
+    });
+
+    console.log("Form data:", name, type, date, days, time, desc, repeat); // Debugging
 
     const userID = firebase.auth().currentUser.uid;
 
     // Add data to Firestore
+    // NOTE: days will be the new date, date is kepts for now so things do not break
     colRef.add({
         user: userID,
         name: name,
         type: type,
         date: date,
+        days: days,
         time: time,
         desc: desc,
+        repeat: repeat,
         status: false
     })
     .then(function(docRef) {
@@ -38,16 +63,6 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
     });
 });
 
-/* Color changing for the day buttons: */
-const dayBtn = document.querySelectorAll(".day-btn");
-
-dayBtn.forEach(element => {
-    element.addEventListener('click', () => {
-        if (element.style.backgroundColor === "#457B9D") {
-            element.style.backgroundColor = "#1d3557";
-        } else {
-            element.style.backgroundColor = "#457B9D";
-        }
-        element.style.color = "#f1faee";
-    });
-});
+function uploadImage() {
+    console.log("supposed to upload image.");
+}
