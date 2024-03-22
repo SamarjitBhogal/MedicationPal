@@ -50,6 +50,7 @@ function displayUpcoming(e, n) {
     $("#marker-btn" + n).load("../components/markerBtn.html");
 }
 
+//e is entity, n is number in the current iteration
 function displayCompleted(e, n) {
     var name = e.data().name;
     var type = e.data().type;
