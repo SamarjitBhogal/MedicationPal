@@ -27,7 +27,6 @@ function displayUpcoming(e, n) {
     var time = e.data().time;
     var status = e.data().status;
 
-    if (status === false) { // Check if status is false
         var tr = document.createElement("tr");
         var td = markerBtn(n);
         tr.appendChild(td);
@@ -46,7 +45,7 @@ function displayUpcoming(e, n) {
 
         document.getElementById("hpage-upcoming-tb").appendChild(tr);
         $("#marker-btn" + n).load("../components/markerBtn.html");
-}}
+}
 
 //e is entity, n is number in the current iteration
 function displayCompleted(e, n) {
@@ -56,7 +55,6 @@ function displayCompleted(e, n) {
     var time = e.data().time;
     var status = e.data().status;
 
-    if (status === true) { // Check if status is true
         var tr = document.createElement("tr");
         var td = undoBtn(n);
         tr.appendChild(td);
@@ -75,7 +73,7 @@ function displayCompleted(e, n) {
 
         document.getElementById("hpage-completed-tb").appendChild(tr);
         $("#completed-btn" + n).load("../components/undoBtn.html");
-}
+
 }
 
 
