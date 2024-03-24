@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.pal-btn:focus {
+    background-color: #1d3557;
+}
+
+.pal-btn:active {
+    background-color: #1d3557 !important;
+}
+
+.no-pal-div {
+}
