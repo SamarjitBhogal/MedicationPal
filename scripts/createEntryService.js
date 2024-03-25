@@ -80,7 +80,7 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         // Adding medication entry
         colMedicationRef.add({
             user: userID,
-            schedule: docRefSchedule,
+            schedule: docRefSchedule.id,
             name: name,
             type: type,
             date: date,
@@ -94,7 +94,7 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
 
             //add medication entry id to schedule
             colScheduleRef.doc(docRefSchedule.id).update({
-                medication: docRefMedication
+                medication: docRefMedication.id
             }).then(() => {
                 console.log("added medication docID to schedule doc.");
             }).catch((e) => {
