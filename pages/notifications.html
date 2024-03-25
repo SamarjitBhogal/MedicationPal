@@ -34,52 +34,57 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="/styles/notification.css">
+    <link rel="stylesheet" href="/styles/notificationStyle.css">
 
 </head>
 
 <body class="hot-bar-m">
     <div id="nav-placeholder"></div>
-    
-    <div id="container">
-        <div class="top">
-            <h4>Notification Type</h4>
+
+    <div class="mt-4">
+        <h1 class="text-center">Notification Settings</h1>
+        <div class="card bg-a8dadc border-0 rounded-4 p-3 mx-3 mt-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="toggleNotifications" checked>
+                <label class="form-check-label" for="toggleNotifications">Toggle Notifications</label>
+            </div>
         </div>
-
-
-        <div class="middle1">
-            <h5>Push Notifications</h5>
-            <br>
-            <input type="radio">
-            <label for="">Banner + Sound</label>
-            <br>
-            <input type="radio">
-            <label for="">Banner + Silent</label>
-            <br>
-            <input type="radio">
-            <label for="">No Notification</label>
-        </div>
-
-        <div class="middle2">
-            <h5>Email Notification</h5>
-            <br>
-            <label for="">Email: </label>
-            <input type="email"> &nbsp; <input type="checkbox">
-            <br>
-            <br>
-            <input type="radio">
-            <label for="">No Notification</label>
-        </div>
-
-        <div class="bottom">
+        <div class="card bg-a8dadc border-0 rounded-4 p-3 mx-3 mt-3">
             <form>
-            <button type="submit" class="btn btn-primary">Save</button>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="bannerCheck" checked>
+                    <label class="form-check-label" for="bannerCheck">
+                        Banner
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="smsCheck">
+                    <label class="form-check-label" for="smsCheck">
+                        SMS
+                    </label>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="phoneNum" placeholder="888-888-8888" disabled>
+                        <label for="phoneNum">Phone Number</label>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="emailCheck">
+                    <label class="form-check-label" for="emailCheck">
+                        Email
+                    </label>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" disabled>
+                        <label for="email">Email address</label>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button id="save-btn" type="submit" class="btn btn-primary save-btn bg-457b9d c-f1faee mt-3">
+                        Save
+                    </button>
+                </div>
             </form>
         </div>
     </div>
-    
-
-
 
     <div id="footer-placeholder"></div>
     <!---------------------------------------------->
@@ -89,6 +94,7 @@
     <!-- Link to scripts of your own -->
     <script src="../scripts/firebaseAPI_BBY06.js"></script>
     <script src="../scripts/navSkeleton.js"></script>
+    <script src="/scripts/notification.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,7 @@
+.save-btn:focus {
+    background-color: #1d3557;
+}
+
+.save-btn:active {
+    background-color: #1d3557 !important;
+}
