@@ -56,6 +56,9 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
 
     dayBtn.forEach(element => {
         if (element.getAttribute("aria-pressed") == "true") {
+            if(days == "")
+            days += element.value;
+        else
             days += "-" + element.value;
         }        
     });
