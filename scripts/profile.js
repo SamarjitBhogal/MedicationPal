@@ -1,5 +1,4 @@
 var currentUser;          //put this right after you start script tag before writing any functions.
-var currentUser;               //points to the document of the user who is logged in
 function populateUserInfo() {
             firebase.auth().onAuthStateChanged(user => {
                 // Check if user is signed in:
@@ -11,21 +10,21 @@ function populateUserInfo() {
                     currentUser.get()
                         .then(userDoc => {
                             //get the data fields of the user
-                            let userName = userDoc.data().name;
+                            let userName2 = userDoc.data().name2;
                             let userNum = userDoc.data().num;
-                            let userEmail2 = userDoc.data().email;
+                            let userEmail2 = userDoc.data().email2;
                             let userAddress = userDoc.data().address;
                             let userDesc = userDoc.data().desc;
 
                             //if the data fields are not empty, then write them in to the form.
                             if (userName2 != null) {
-                                document.getElementById("nameInput").value = userName2;
+                                document.getElementById("nameInput2").value = userName2;
                             }
                             if (userNum != null) {
                                 document.getElementById("numInput").value = userNum;
                             }
                             if (userEmail2 != null) {
-                                document.getElementById("emailInput").value = userEmail2;
+                                document.getElementById("emailInput2").value = userEmail2;
                             }
                             if (userAddress != null) {
                                 document.getElementById("addressInput").value = userAddress;
@@ -64,7 +63,7 @@ function editUserInfo() {
         num: userNum,
         email2: userEmail2,
         address: userAddress,
-        desc:userDesc
+        desc: userDesc
     })
     .then(() => {
         console.log("Document successfully updated!");
