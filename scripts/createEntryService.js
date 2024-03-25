@@ -85,6 +85,7 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
             type: type,
             date: date,
             desc: desc,
+            status: false
         })
         .then(function(docRefMedication) {
             console.log("Medication entry written with ID: ", docRefMedication.id);

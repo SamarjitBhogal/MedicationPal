@@ -61,16 +61,22 @@
                     Add a Pal
                 </button>
             </p>
-            <div class="collapse show" id="addMediPal">
+            <div class="collapse show" id="add-medi-pal">
                 <div class="card card-body bg-a8dadc border-0 mx-3 rounded-4">
                     <p>Please Enter the email of your soon to be MedicationPal:</p>
-                    <div class="form-floating mt-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Email address</label>
-                        <button type="button" class="btn btn-primary bg-457b9d c-f1faee pal-btn mt-3">
+                    <form id="medi-pals-form" class="needs-validation" novalidate>
+                        <div class="form-floating mt-3">
+                            <input type="email" class="form-control" id="palsEmail" placeholder="name@example.com" required>
+                            <label for="palsEmail">Email address</label>
+                            <div class="valid-feedback">
+                                Looks good!
+                              </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary bg-457b9d c-f1faee pal-btn mt-3">
                             Send Request
                         </button>
-                    </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -83,8 +89,9 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="../scripts/firebaseAPI_BBY06.js"></script>
-    <script src="../scripts/navSkeleton.js"></script>
+    <script src="/scripts/firebaseAPI_BBY06.js"></script>
+    <script src="/scripts/navSkeleton.js"></script>
+    <script src="/scripts/medicationPalsService.js"></script>
 </body>
 
 </html>
