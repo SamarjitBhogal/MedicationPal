@@ -1,6 +1,10 @@
 /* Color changing on select for the day buttons: */
 const dayBtn = document.querySelectorAll(".day-btn");
 
+/* Holds the images uploaded be the user */
+var imageFile1;
+var imageFile2;
+
 dayBtn.forEach(element => {
     element.addEventListener('click', () => {
         if (element.getAttribute("aria-pressed") == "false") {
@@ -11,10 +15,6 @@ dayBtn.forEach(element => {
         element.style.color = "#f1faee";
     });
 });
-
-/* Holds the images uploaded be the user */
-var imageFile1;
-var imageFile2;
 
 function listenUpload() {
     var input1 = document.getElementById("medImg-1");
@@ -34,7 +34,8 @@ function listenUpload() {
 listenUpload();
 
 // Reference to the collection
-var colMedicationRef = db.collection('MedicationInfo');
+const colMedicationRef = db.collection('MedicationInfo');
+const colScheduleRef = db.collection('schedule');
 
 // Event listener for form submission
 document.getElementById('medicationForm').addEventListener('submit', function(event) {
@@ -50,10 +51,7 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
     const time = document.getElementById('time').value;
     const desc = document.getElementById('desc').value;
     const repeat = document.getElementById('repeat').value;
-    var scheduleType;
-
-    //translates the buttons and stores the data accordingly
-    // 0-6 == sun-sat
+    const date = "date field is deprecated";
     var days = "";
 
     dayBtn.forEach(element => {
@@ -64,64 +62,56 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
             days += "-" + element.value;
         }        
     });
-    // make the days selected populate an array:
-    var daysArray = days.split('-');
 
-    if (daysArray.length == 7) {
-        scheduleType = "daily";
-    } else {
-        scheduleType = "select-days";
-    }
+    console.log("Form data:", name, type, date, days, time, desc, repeat); // Debugging
 
-    console.log("Form data:", name, type, days, time, desc, repeat); // Debugging
-
-    // Adding medication entry
-    colMedicationRef.add({
-        user: userID,
-        name: name,
-        type: type,
-        desc: desc,
+    //makes the schedule doc in the schedule collection
+    colScheduleRef.add({
+        time: time,
         repeat: repeat,
-        scheduleType: scheduleType,
-    })
-    .then(function(docRefMedication) {
-        // adding the specific schedule in the scheduleInfo collection 
-        if (scheduleType == "daily") {
-            // adding a daily schedule
-            colMedicationRef.doc(docRefMedication.id).collection('scheduleInfo').add({
-                time: time,
-                status: false
+        days: days,
+        sun: false,
+        mon: false,
+        tues: false,
+        wed: false,
+        thurs: false,
+        fri: false,
+        sat: false
+    }).then((docRefSchedule) => {
+        console.log("Schedule written with ID", docRefSchedule.id);
+
+        // Adding medication entry
+        colMedicationRef.add({
+            user: userID,
+            schedule: docRefSchedule.id,
+            name: name,
+            type: type,
+            date: date,
+            desc: desc,
+            status: false
+        })
+        .then(function(docRefMedication) {
+            console.log("Medication entry written with ID: ", docRefMedication.id);
+            //upload the image to Storage on Firebase
+            uploadImage(docRefMedication.id);
+
+            //add medication entry id to schedule
+            colScheduleRef.doc(docRefSchedule.id).update({
+                medication: docRefMedication.id
             }).then(() => {
-                console.log("daily schedule added.");
+                console.log("added medication docID to schedule doc.");
             }).catch((e) => {
-                console.error("Daily schedule cannot be added: ", e);
+                console.error("Failed to add medication docID to schedule doc: ", e);
             });
-        } else if (scheduleType == "select-days") {
-            // adding each selected day as it's own doc
-            for (let i = 0; i < daysArray.length; i++) {
-                // day will be one of 0-6 which is sun-sat
-                colMedicationRef.doc(docRefMedication.id).collection('scheduleInfo').add({
-                    day: daysArray[i],
-                    time: time,
-                    staus: false
-                }).then(() => {
-                    console.log(i + "day is added in select-days schedule.");
-                }).catch((e) => {
-                    console.error("Select-days schedule cannot be added: ", e);
-                });
-            }
-        } else {
-            console.log("No schedule type is defined! Schedule doc not created!");
-        }
-        console.log("Medication entry written with ID: ", docRefMedication.id);
-        //upload the image to Storage on Firebase
-        uploadImage(docRefMedication.id);
-        // Reset the form
-        document.getElementById('medicationForm').reset();
-        // reset the day selectors too.
-    })
-    .catch(function(error) {
-        console.error("Error adding Medication entry: ", error);
+
+            // Reset the form
+            document.getElementById('medicationForm').reset();
+        })
+        .catch(function(error) {
+            console.error("Error adding Medication entry: ", error);
+        });
+    }).catch((e) => {
+        console.error("Error adding Schedule: ", e);
     });
 });
 
