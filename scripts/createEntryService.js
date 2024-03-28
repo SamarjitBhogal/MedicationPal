@@ -1,6 +1,7 @@
 /* Color changing on select for the day buttons: */
 const dayBtn = document.querySelectorAll(".day-btn");
 var fireStorageImageLocation;
+var scheduleDocs = Array();
 
 // adds an event listener to each day button and handles the color change
 dayBtn.forEach(button => {
@@ -113,7 +114,8 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
                     day: daysArray[i],
                     time: time,
                     staus: false
-                }).then(() => {
+                }).then((scheduleDoc) => {
+                    scheduleDocs.push(scheduleDoc);
                     console.log(i + "day is added in select-days schedule.");
                 }).catch((e) => {
                     console.error("Select-days schedule cannot be added: ", e);
@@ -135,12 +137,11 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
 
         //event listener for the entry-conf modal's undo button that pops up when submitting an entry
         document.getElementById("undo-btn").addEventListener('click', () => {
-            var j = Array();
             // remove schedule collection first then the actual medication entry doc and then finally the image if there was any.
             db.collection('MedicationInfo').doc(docRefMedication.id).collection('scheduleInfo')
             .get().then((schedules) => {
                 schedules.forEach((schedule) => {
-                    schedule.delete().then(() => {
+                    db.collection('MedicationInfo').doc(docRefMedication.id).collection('scheduleInfo').doc(schedule.id).delete().then(() => {
                         console.log("Deleted a schedule doc.");
                     }).catch((e) => {
                         console.error("Could not delete schedule doc: ", e);
