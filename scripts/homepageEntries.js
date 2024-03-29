@@ -27,24 +27,24 @@ function displayUpcoming(e, n) {
     var time = e.data().time;
     var status = e.data().status;
 
-        var tr = document.createElement("tr");
-        var td = markerBtn(n);
-        tr.appendChild(td);
-        var tdName = document.createElement("td");
-        tdName.innerHTML = name;
-        tr.appendChild(tdName);
-        var tdType = document.createElement("td");
-        tdType.innerHTML = type;
-        tr.appendChild(tdType);
-        var tdTime = document.createElement("td");
-        tdTime.innerHTML = time;
-        tr.appendChild(tdTime);
-        var tdDate = document.createElement("td");
-        tdDate.innerHTML = date;
-        tr.appendChild(tdDate);
+    var tr = document.createElement("tr");
+    var td = markerBtn(n);
+    tr.appendChild(td);
+    var tdName = document.createElement("td");
+    tdName.innerHTML = name;
+    tr.appendChild(tdName);
+    var tdType = document.createElement("td");
+    tdType.innerHTML = type;
+    tr.appendChild(tdType);
+    var tdTime = document.createElement("td");
+    tdTime.innerHTML = time;
+    tr.appendChild(tdTime);
+    var tdDate = document.createElement("td");
+    tdDate.innerHTML = date;
+    tr.appendChild(tdDate);
 
-        document.getElementById("hpage-upcoming-tb").appendChild(tr);
-        $("#marker-btn" + n).load("../components/markerBtn.html");
+    document.getElementById("hpage-upcoming-tb").appendChild(tr);
+    $("#marker-btn" + n).load("../components/markerBtn.html");
 }
 
 //e is entity, n is number in the current iteration
@@ -55,24 +55,24 @@ function displayCompleted(e, n) {
     var time = e.data().time;
     var status = e.data().status;
 
-        var tr = document.createElement("tr");
-        var td = undoBtn(n);
-        tr.appendChild(td);
-        var tdName = document.createElement("td");
-        tdName.innerHTML = name;
-        tr.appendChild(tdName);
-        var tdType = document.createElement("td");
-        tdType.innerHTML = type;
-        tr.appendChild(tdType);
-        var tdTime = document.createElement("td");
-        tdTime.innerHTML = time;
-        tr.appendChild(tdTime);
-        var tdDate = document.createElement("td");
-        tdDate.innerHTML = date;
-        tr.appendChild(tdDate);
+    var tr = document.createElement("tr");
+    var td = undoBtn(n);
+    tr.appendChild(td);
+    var tdName = document.createElement("td");
+    tdName.innerHTML = name;
+    tr.appendChild(tdName);
+    var tdType = document.createElement("td");
+    tdType.innerHTML = type;
+    tr.appendChild(tdType);
+    var tdTime = document.createElement("td");
+    tdTime.innerHTML = time;
+    tr.appendChild(tdTime);
+    var tdDate = document.createElement("td");
+    tdDate.innerHTML = date;
+    tr.appendChild(tdDate);
 
-        document.getElementById("hpage-completed-tb").appendChild(tr);
-        $("#completed-btn" + n).load("../components/undoBtn.html");
+    document.getElementById("hpage-completed-tb").appendChild(tr);
+    $("#completed-btn" + n).load("../components/undoBtn.html");
 }
 
 
