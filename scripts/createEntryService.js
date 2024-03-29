@@ -12,6 +12,7 @@ dayBtn.forEach(button => {
             button.style.backgroundColor = "#1d3557";
         }
         button.style.color = "#f1faee";
+        checkAllButtons();
     });
 });
 
@@ -59,6 +60,7 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
     const desc = document.getElementById('desc').value;
     const repeat = document.getElementById('repeat').value;
     const dose = document.getElementById('dose').value;
+    const endDate = document.getElementById('endDate').value;
     var scheduleType;
 
     //translates the buttons and stores the data accordingly
@@ -82,8 +84,6 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         scheduleType = "select-days";
     }
 
-    console.log("Form data:", name, type, days, time, desc, repeat); // Debugging
-
     // Adding medication entry
     colMedicationRef.add({
         user: userID,
@@ -92,6 +92,7 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         dose: dose,
         desc: desc,
         repeat: repeat,
+        end: endDate,
         scheduleType: scheduleType,
     })
     .then(function(docRefMedication) {
@@ -204,4 +205,19 @@ function resetDayBtns() {
         button.setAttribute('aria-pressed', false);
         button.style.backgroundColor = "#457B9D";
     });
+}
+
+function checkAllButtons() {
+    let count = 0;
+    dayBtn.forEach(button => {
+        if (button.getAttribute("aria-pressed") == "true") {
+            count++;
+        }
+    });
+
+    if (count == 7) {
+        document.getElementById("repeat").value = "daily";
+    } else {
+        document.getElementById("repeat").value = "weekly";
+    }
 }

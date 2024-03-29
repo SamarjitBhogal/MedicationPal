@@ -44,7 +44,7 @@
   <div id="nav-placeholder"></div>
 
   <div class="container">
-    <h1 class="text-center mt-5 mb-4 c-1d3557">Create a Medication Entry</h1>
+    <h1 class="text-center my-4 c-1d3557">Create a Medication Entry</h1>
     <form class="c-1d3557" action="" id="medicationForm">
       <div class="card bg-a8dadc p-4 mb-4 border-0 rounded-4">
         <div class="mb-3">
@@ -98,10 +98,13 @@
         <div class="mb-3">
           <label for="time" class="form-label">Repeating:</label>
           <select class="form-select" aria-label="Default select example" id="repeat">
-            <option selected value="week">Weekly</option>
+            <option selected value="weekly">Weekly</option>
             <option value="daily">Daily</option>
-            <option value="dnr">Does not repeat</option>
           </select>
+        </div>
+        <div class="mb-3">
+          <label for="endDate">End Date</label>
+          <input id="endDate" class="form-control" type="date" />
         </div>
       </div>
 
