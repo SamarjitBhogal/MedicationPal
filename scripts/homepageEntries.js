@@ -1,17 +1,17 @@
+/* 
+    Need to work on: 
+        - visual confirmation of completing entry
+        - a message if there are no entries today
+        - a message if there are no entries at all  
+*/
+
 /* This function is responsible for displaying the medication entries on the homepage */
+var date = new Date();
+var currDay = date.getDay();
 function displayEntries() {
     firebase.auth().onAuthStateChanged(user => {
         const userID = user.uid;
-        var date = new Date();
-        var currDay = date.getDay();
-
         let entryTemp = document.getElementById("entry-template");
-        var mediName;
-        var mediDose;
-        var mediStatus;
-        var mediTime;
-        var mediHours;
-        var mediMinutes;
 
         db.collection("MedicationInfo").where("user", "==", userID).orderBy("timeNum").get().then((entries) => {
             entries.forEach((entry) => {
@@ -19,13 +19,15 @@ function displayEntries() {
                 if (entry.data().scheduleType == "daily") {
                     // display regardless of day
                     db.collection("MedicationInfo").doc(entry.id).collection("scheduleInfo").get().then((schedules) => {
-                        schedules.forEach((sche) => {
-                            mediTime = new Date(entry.data().time.seconds*1000);
+                        schedules.forEach((scheDaily) => {
+                            let mediTime = new Date(entry.data().time.seconds*1000);
                             let newEntry = entryTemp.content.cloneNode(true);
-                            mediName = entry.data().name;
-                            mediDose = entry.data().dose;
-                            mediHours = mediTime.getHours();
-                            mediMinutes = mediTime.getMinutes();
+                            //newEntry.id = "entry-" + sche.id;
+                            let mediName = entry.data().name;
+                            let mediDose = entry.data().dose;
+                            let mediHours = mediTime.getHours();
+                            let mediMinutes = mediTime.getMinutes();
+                            let mediStatus;
 
                             if (entry.data().timeNum - 1200 < 0) {
                                 //the AM assignment
@@ -36,8 +38,12 @@ function displayEntries() {
                                 entry.data().timeNum >= 1300 ? mediTime = (mediHours -12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
                             }
                             
-                            if (sche.data().status) {
+                            newEntry.querySelector('.entry-btn').id = "entry-" + scheDaily.id;
+                            newEntry.querySelector('.entry-card').id = "entry-card-" + scheDaily.id;
+                            
+                            if (scheDaily.data().status) {
                                 mediStatus = "Completed";
+                                //document.getElementById("entry-card-" + scheDaily.id).style.backgroundColor = "#457B9D";
                             } else {
                                 mediStatus = "Not Yet Taken";
                             }                            
@@ -45,10 +51,15 @@ function displayEntries() {
                             newEntry.querySelector('#medi-time').innerHTML = mediTime;
                             newEntry.querySelector('#medi-name').innerHTML = mediName;
                             newEntry.querySelector('#medi-dose').innerHTML = mediDose;
-                            newEntry.querySelector('#medi-status').innerHTML = mediStatus;
+                            newEntry.querySelector('#medi-status').innerHTML = mediStatus;                            
+                            
 
                             //attach this entry to MedicationInfo-display div
                             document.getElementById("MedicationInfo-display").appendChild(newEntry);
+                            // adding an event listening to the entry do it gives the modal when clicked
+                            document.getElementById("entry-" + scheDaily.id).addEventListener('click', (e) => {
+                                handleEntryModal(entry, scheDaily, mediStatus, scheDaily.data().status);
+                            });
                         });
                     }).catch((e) => {
                         console.error("Cound not find dailiy schedules: ", e);
@@ -59,13 +70,14 @@ function displayEntries() {
                     .get().then((schedules) => {
                         if (!schedules.empty) {
                             //displaying the entries that occur today ONLY
-                            schedules.forEach((sche) => {
-                                mediTime = new Date(entry.data().time.seconds*1000);
+                            schedules.forEach((scheSelect) => {
+                                let mediTime = new Date(entry.data().time.seconds*1000);
                                 let newEntry = entryTemp.content.cloneNode(true);
-                                mediName = entry.data().name;
-                                mediDose = entry.data().dose;
-                                mediHours = mediTime.getHours();
-                                mediMinutes = mediTime.getMinutes();
+                                let mediName = entry.data().name;
+                                let mediDose = entry.data().dose;
+                                let mediHours = mediTime.getHours();
+                                let mediMinutes = mediTime.getMinutes();
+                                let mediStatus;
                                 
                                 if (entry.data().timeNum - 1200 < 0) {
                                     //the AM assignment
@@ -75,9 +87,13 @@ function displayEntries() {
                                     // checks if time is greater than or equal to 1300 and minus 12 to displat 12 hour time format
                                     entry.data().timeNum >= 1300 ? mediTime = (mediHours -12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
                                 }
+
+                                newEntry.querySelector('.entry-btn').id = "entry-" + scheSelect.id;
+                                newEntry.querySelector('.entry-card').id = "entry-card-" + scheSelect.id;
                                 
-                                if (sche.data().status) {
+                                if (scheSelect.data().status) {
                                     mediStatus = "Completed";
+                                    //document.getElementById("entry-card-" + scheSelect.id).style.backgroundColor = "#457B9D";
                                 } else {
                                     mediStatus = "Not Yet Taken";
                                 }                            
@@ -86,9 +102,13 @@ function displayEntries() {
                                 newEntry.querySelector('#medi-name').innerHTML = mediName;
                                 newEntry.querySelector('#medi-dose').innerHTML = mediDose;
                                 newEntry.querySelector('#medi-status').innerHTML = mediStatus;
-
+                                
                                 //attach this entry to MedicationInfo-display div
                                 document.getElementById("MedicationInfo-display").appendChild(newEntry);
+                                // adding an event listening to the entry do it gives the modal when clicked
+                                document.getElementById("entry-" + scheSelect.id).addEventListener('click', (e) => {
+                                    handleEntryModal(entry, scheSelect, mediStatus, scheSelect.data().status);
+                                });
                             });
                         } else {
                             console.log("No select-type scehdules today");
@@ -103,7 +123,52 @@ function displayEntries() {
         });
     });
 }
-displayEntries();
+
+function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
+    const entryConf = new bootstrap.Modal(document.getElementById("home-entry-conf"));
+    entryConf.show();
+    //check if status is true then display undo btn
+    if (status) {
+        document.getElementById("undo-entry-display").toggleAttribute("hidden");
+    }
+
+    db.collection("MedicationInfo").doc(entryRef.id).get().then((doc) => {
+        document.getElementById('modal-medi-name').innerHTML = doc.data().name; 
+        document.getElementById('modal-medi-dose').innerHTML = doc.data().dose; 
+        document.getElementById('modal-medi-status').innerHTML = statusAsString; 
+    });
+
+    // event listeners for buttons on modal
+    $('#undo-entry-btn').on('click', (e) => {
+        db.collection("MedicationInfo").doc(entryRef.id).collection("scheduleInfo").doc(scheduleRef.id)
+        .update({
+            status: false
+        }).then((schedule) => {
+            console.log("medication status undone!");
+            // update homepage view
+            location.reload();
+        }).catch((e) => {
+            console.error("Could not update status: ", e);
+        });
+    });
+
+    $('#take-entry-btn').on('click', (e) => {
+        // update database status        
+        db.collection("MedicationInfo").doc(entryRef.id).collection("scheduleInfo").doc(scheduleRef.id)
+        .update({
+            status: true
+        }).then((schedule) => {
+            console.log("medication taken!");
+            // update homepage view
+            location.reload();
+        }).catch((e) => {
+            console.error("Could not update status: ", e);
+        });
+    });
+
+    // hidding again to make sure entries that don't have true status don't have this button
+    document.getElementById("undo-entry-display").toggleAttribute("hidden");
+}
 
 // old way
 function displayEntries2() {
@@ -237,4 +302,5 @@ function saveCompletedRow(num) {
 
 
 }
-displayEntries2();
+displayEntries();
+//displayEntries2();

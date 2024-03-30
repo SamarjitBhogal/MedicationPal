@@ -46,81 +46,26 @@
 
         <h3 class="text-center c-1d3557">Your Schedule Today:</h3>
         <template id="entry-template">
-            <div class="py-2 mx-4 mb-3 entry-card">
+            <div class="py-2 mx-4 mb-3">
                 <h4 id="medi-time" class="c-1d3557">0:00 AM</h4>
-                <div class="card border-0 rounded-4 bg-a8dadc">
-                    <div class="d-flex justify-content-evenly align-items-center">
-                        <div><span class="material-symbols-outlined">pill</span></div>
-                        <div>
-                            <p>Name: <span id="medi-name">med name</span></p>
-                            <p>Dose: <span id="medi-dose">#</span> Pill(s)</p>
-                            <p id="medi-status">status</p>
+                <button class="entry-btn" type="button">
+                    <div class="card entry-card border-0 rounded-4 py-2 bg-a8dadc">
+                        <div class="d-flex justify-content-evenly align-items-center">
+                            <div><span class="material-symbols-outlined">pill</span></div>
+                            <div>
+                                <p><span id="medi-name">med name</span></p>
+                                <p>Take <span id="medi-dose">#</span> Pill(s)</p>
+                                <p id="medi-status">status</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </button>
             </div>
         </template>
 
         <div id="MedicationInfo-display"></div>
-
-        <div class="container mb-4">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item mb-3 bg-a8dadc">
-                    <h2 class="accordion-header ">
-                        <button class="accordion-button bg-a8dadc" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Upcoming Medication
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Time</th>
-                                        <th scope="col">Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="hpage-upcoming-tb">
-                                    <!-- put entries here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item bg-a8dadc">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed bg-a8dadc" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Completed Entries
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Time</th>
-                                        <th scope="col">Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="hpage-completed-tb">
-                                    <!-- put entries here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="doc-info bg-a8dadc p-4 mb-5 rounded-1">
+        <hr class="mx-3">
+        <div class="doc-info bg-a8dadc p-4 mt-3 mb-5 rounded-4 text-center mx-4">
             <p>
                 <span>
                     Your doctor's information:
@@ -134,23 +79,64 @@
                 </span>
             </p>
         </div>
-        <div class="progress-card bg-a8dadc p-4 rounded-1">
-            <p>
-                <span>
-                    Your progress so far:
-                </span>
-            </p>
-            <div class="progress med-pal-progessbar bg-f1faee mb-2" role="progressbar"
+        <div class="progress-card bg-a8dadc p-4 rounded-4 text-center mx-4">
+            <h5 class="mb-3">Your Progress So Far:</h5>
+            <div class="progress med-pal-progessbar bg-f1faee mb-3" role="progressbar"
                 aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
                 id="progess-status">
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-457b9d" style="width: 75%"></div>
             </div>
-            <p>
+            <p class="mb-3">
                 <span id="progress-msg">
                     Well done! Keep up the good work!
                 </span>
             </p>
             <button type="button" class="btn bg-1d3557 c-f1faee remove-border">View details</button>
+        </div>
+    </div>
+
+    <!-- Modal that appears when clicking on an entry to show options -->
+    <div class="modal fade" id="home-entry-conf" tabindex="-1" aria-labelledby="modal-medi-name" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-a8dadc rounded-4">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-3 c-1d3557 w-100 text-center" id="modal-medi-name"></h1>
+                </div>
+                <div class="modal-body text-center fs-4 c-1d3557">
+                    <p>Take <span id="modal-medi-dose"></span> Pill(s)</p>
+                    <p id="modal-medi-status"></p>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100 d-flex justify-content-evenly">
+                        <div id="undo-entry-display" class="text-center">
+                            <button id="undo-entry-btn" type="button" class="btn btn-secondary bg-1d3557 c-f1faee">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <span class="material-symbols-outlined">
+                                        undo
+                                    </span>
+                                </div>
+                            </button>
+                            <p>UNDO</p>
+                        </div>
+                        <div class="text-center">
+                            <button type="button"
+                                class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
+                                data-bs-dismiss="modal"><span class="material-symbols-outlined">
+                                    close
+                                </span></button>
+                            <p>CLOSE</p>
+                        </div>
+                        <div class="text-center">
+                            <button id="take-entry-btn" type="button"
+                                class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
+                                data-bs-dismiss="modal"><span class="material-symbols-outlined">
+                                    done
+                                </span></button>
+                            <p>TAKE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -161,7 +147,6 @@
     <script src="/scripts/main.js"></script>
     <script src="/scripts/homepageEntries.js"></script>
     <script src="/scripts/timer.js"></script>
-
 </body>
 
 </html>
