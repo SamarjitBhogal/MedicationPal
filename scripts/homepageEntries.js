@@ -15,8 +15,7 @@ function displayEntries() {
 
         db.collection("MedicationInfo").where("user", "==", userID).orderBy("timeNum").get().then((entries) => {
             entries.forEach((entry) => {
-                mediTime = entry.data().time;
-                console.log(mediTime);
+                mediTime = new Date(entry.data().time.seconds*1000);
                 // check if first daily type and handle it a different way
                 if (entry.data().scheduleType == "daily") {
                     // display regardless of day
@@ -31,19 +30,16 @@ function displayEntries() {
                                 let newEntry = entryTemp.content.cloneNode(true);
                                 mediName = entry.data().name;
                                 mediDose = entry.data().dose;
-                                //mediHours = entry.data().time.getHours();
+                                mediHours = mediTime.getHours();
+                                mediMinutes = mediTime.getMinutes();
                                 
                                 if (entry.data().timeNum - 1200 < 0) {
                                     //the AM assignment
-                                    mediTime = entry.data().time + " AM";
+                                    mediTime = mediHours + ":" + mediMinutes + " AM";
                                 } else {
                                     //the PM assignment
-                                    var test = new Date(0, 0, 0, 12, 16);
-
-                                    let hour = test.getHours();
-                                    let min = test.getMinutes();
-
-                                    mediTime = hour + ":" + min + " PM";
+                                    // checks if time is greater than or equal to 1300 and minus 12 to displat 12 hour time format
+                                    entry.data().timeNum >= 1300 ? mediTime = (mediHours -12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
                                 }
                                 
                                 if (sche.data().status) {
