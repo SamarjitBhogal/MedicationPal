@@ -124,7 +124,7 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         if (scheduleType == "daily") {
             // adding a daily schedule
             colMedicationRef.doc(docRefMedication.id).collection('scheduleInfo').add({
-                time: new Date(0, 0, 0, hours, mins),
+                time: timeAsNumber,
                 status: false
             }).then(() => {
                 console.log("daily schedule added.");
