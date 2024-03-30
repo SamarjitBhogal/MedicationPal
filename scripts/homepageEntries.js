@@ -1,6 +1,81 @@
+/* This function is responsible for displaying the medication entries on the homepage */
 function displayEntries() {
     firebase.auth().onAuthStateChanged(user => {
-        userID = user.uid;
+        const userID = user.uid;
+        var date = new Date();
+        var currDay = date.getDay();
+
+        let entryTemp = document.getElementById("entry-template");
+        var mediName;
+        var mediDose;
+        var mediStatus;
+        var mediTime;
+        var mediHours;
+        var mediMinutes;
+
+        db.collection("MedicationInfo").where("user", "==", userID).orderBy("timeNum").get().then((entries) => {
+            entries.forEach((entry) => {
+                mediTime = new Date(entry.data().time.seconds*1000);
+                // check if first daily type and handle it a different way
+                if (entry.data().scheduleType == "daily") {
+                    // display regardless of day
+
+                } else {
+                    // if not then handle it select-day way
+                    db.collection("MedicationInfo").doc(entry.id).collection("scheduleInfo").where("day", "==", currDay)
+                    .get().then((schedules) => {
+                        if (!schedules.empty) {
+                            //displaying the entries that occur today ONLY
+                            schedules.forEach((sche) => {
+                                let newEntry = entryTemp.content.cloneNode(true);
+                                mediName = entry.data().name;
+                                mediDose = entry.data().dose;
+                                mediHours = mediTime.getHours();
+                                mediMinutes = mediTime.getMinutes();
+                                
+                                if (entry.data().timeNum - 1200 < 0) {
+                                    //the AM assignment
+                                    mediTime = mediHours + ":" + mediMinutes + " AM";
+                                } else {
+                                    //the PM assignment
+                                    // checks if time is greater than or equal to 1300 and minus 12 to displat 12 hour time format
+                                    entry.data().timeNum >= 1300 ? mediTime = (mediHours -12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
+                                }
+                                
+                                if (sche.data().status) {
+                                    mediStatus = "Completed";
+                                } else {
+                                    mediStatus = "Not Yet Taken";
+                                }                            
+
+                                // is queryselector needed?
+                                newEntry.querySelector('#medi-time').innerHTML = mediTime;
+                                newEntry.querySelector('#medi-name').innerHTML = mediName;
+                                newEntry.querySelector('#medi-dose').innerHTML = mediDose;
+                                newEntry.querySelector('#medi-status').innerHTML = mediStatus;
+
+                                //attach this entry to MedicationInfo-display div
+                                document.getElementById("MedicationInfo-display").appendChild(newEntry);
+                            });
+                        } else {
+                            console.log("No scehdules today");
+                        }                       
+                    }).catch((e) => {
+                        console.error("Could not find today's entries: ", e);
+                    });
+                }
+            });
+        }).catch((e) => {
+            console.error("Could not find the user's entries: ", e);
+        });
+    });
+}
+displayEntries();
+
+// old way
+function displayEntries2() {
+    firebase.auth().onAuthStateChanged(user => {
+        const userID = user.uid;
 
         db.collection("MedicationInfo").where("user", "==", userID).get().then((userEntries) => {
             var markerNum = 1;
@@ -129,4 +204,4 @@ function saveCompletedRow(num) {
 
 
 }
-displayEntries();
+displayEntries2();
