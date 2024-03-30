@@ -22,6 +22,8 @@
   <!-- Other libraries go here -->
   <!-- This is the CDN for bootstrap icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
   <!-- Firebase libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -42,66 +44,79 @@
   <div id="nav-placeholder"></div>
 
   <div class="container">
-    <h1 class="text-center mt-5 mb-4 c-1d3557">Create a Medication Entry</h1>
+    <h1 class="text-center my-4 c-1d3557">Create a Medication Entry</h1>
     <form class="c-1d3557" action="" id="medicationForm">
-      <div class="card bg-a8dadc p-4 mb-4 border-0">
+      <div class="card bg-a8dadc p-4 mb-4 border-0 rounded-4">
         <div class="mb-3">
-          <label for="name" class="form-label">Medication Name: </label>
+          <label for="name" class="form-label">Medication Name:</label>
           <input type="text" class="form-control" id="name" required>
         </div>
         <div class="mb-3">
-          <label for="type" class="form-label">Type: </label>
+          <label for="type" class="form-label">Type:</label>
           <input type="text" class="form-control" id="type" required>
         </div>
+        <label for="dose" class="form-label">Dosage:</label>
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" id="dose" value="1" max="10" min="1" required>
+          <button id="add1" class="btn btn-outline-secondary bg-457b9d c-f1faee" type="button"><i
+              class="bi bi-caret-up"></i></button>
+          <button id="remove1" class="btn btn-outline-secondary bg-457b9d c-f1faee" type="button"><i
+              class="bi bi-caret-down"></i></button>
+        </div>
         <div>
-          <label for="desc" class="form-label">Description: </label>
+          <label for="desc" class="form-label">Description:</label>
           <textarea id="desc" class="form-control" rows="5"></textarea>
         </div>
       </div>
-      <div class="card bg-a8dadc p-4 mb-4 border-0">
+      <div class="card bg-a8dadc p-4 mb-4 border-0 rounded-4">
         <div class="mb-3">
-          <label for="date" class="form-label">Select Day(s): </label>
+          <label for="date" class="form-label">Select Day(s):</label>
           <div class="d-flex justify-content-evenly align-items-center">
-            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="sun">S</button>
-            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="mon">M</button>
-            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="tues">T</button>
-            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="wed">W</button>
-            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="thurs">T</button>
-            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="fri">F</button>
-            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button" value="sat">S</button>
+            <!-- 0-6 = sun-sat -->
+            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button"
+              value="0">S</button>
+            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button"
+              value="1">M</button>
+            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button"
+              value="2">T</button>
+            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button"
+              value="3">W</button>
+            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button"
+              value="4">T</button>
+            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button"
+              value="5">F</button>
+            <button type="button" class="btn day-btn bg-457b9d c-f1faee remove-border" data-bs-toggle="button"
+              value="6">S</button>
           </div>
         </div>
         <div class="mb-3">
-          <label for="time" class="form-label">Select Time(s): </label>
+          <label for="time" class="form-label">Select a time:</label>
           <div class="cs-form">
-            <input id="time" type="time" class="form-control"/>
+            <input id="time" type="time" class="form-control" />
           </div>
         </div>
         <div class="mb-3">
-          <label for="time" class="form-label">Repeating: </label>
+          <label for="time" class="form-label">Repeating:</label>
           <select class="form-select" aria-label="Default select example" id="repeat">
-            <option selected value="week">Weekly</option>
+            <option selected value="weekly">Weekly</option>
             <option value="daily">Daily</option>
-            <option value="dnr">Does not repeat</option>
           </select>
+        </div>
+        <div class="mb-3">
+          <label for="endDate">End Date</label>
+          <input id="endDate" class="form-control" type="date" />
         </div>
       </div>
 
-      <div class="card bg-a8dadc p-4 border-0">
-        <p class="text-center">Upload prescription or image of medication (optional):</p>
-        <div class="d-flex justify-content-evenly mb-3">
+      <div class="card bg-a8dadc p-4 border-0 rounded-4">
+        <p class="text-center">Upload prescription or image of your medication (optional):</p>
+        <div class="text-center">
           <i class="bi bi-camera c-1d3557"></i>
-          <div class="d-flex align-items-center">
-            <input type="file" id="medImg-1" accept="image/png, image/jpeg"/>
+          <div class="text-center">
+            <input type="file" id="medImg-1" accept="image/png, image/jpeg" />
             <label for="medImg-1" class="file-btn">Choose Image</label>
           </div>
-        </div>
-        <div class="d-flex justify-content-evenly">
-          <i class="bi bi-camera c-1d3557"></i>
-          <div class="d-flex align-items-center">
-            <input type="file" id="medImg-2" accept="image/png, image/jpeg"/>
-            <label for="medImg-2" class="file-btn">Choose Image</label>
-          </div>
+          <p id="image-conf-msg" class="mt-3" hidden>Image uploaded<i class="bi bi-check"></i></p>
         </div>
       </div>
 
@@ -109,6 +124,29 @@
         <button type="submit" class="btn btn-primary bg-1d3557 c-f1faee remove-border save-btn">Save</button>
       </div>
     </form>
+  </div>
+
+  <!-- Modal for entry created confirmation -->
+  <div class="modal fade" id="entry-conf" tabindex="-1" aria-labelledby="entry-conf-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-a8dadc rounded-4">
+        <div class="modal-header">
+          <h1 class="modal-title fs-3 c-1d3557" id="entry-conf-label">Your entry has been created!</h1>
+        </div>
+        <div class="modal-body text-center fs-4 c-1d3557">
+          Leave it to us to remind you, just sit back and relax for now!&#128524;
+        </div>
+        <div class="modal-footer">
+          <button id="undo-btn" type="button" class="btn btn-secondary d-flex align-items-center bg-1d3557 c-f1faee"
+            data-bs-dismiss="modal"><span class="material-symbols-outlined">
+              undo
+            </span></button>
+          <button type="button" class="btn bg-457b9d c-f1faee" data-bs-dismiss="modal">Create Another</button>
+          <button type="button" class="btn bg-457b9d c-f1faee" data-bs-dismiss="modal"><a
+              href="/pages/homepage.html">Done</a></button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="footer-placeholder"></div>

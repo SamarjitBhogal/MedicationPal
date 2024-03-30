@@ -2,6 +2,14 @@
     position: relative;
 }
 
+p {
+    margin: 0;
+}
+
+td, th {
+    background-color: #f1faee !important;
+}
+
 #create-btn {
     position: fixed;
 
@@ -9,14 +17,8 @@
     right: 2%;
 }
 
-.entry-card {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
 .entry-card p {
-    text-align: center;
+    font-weight: bold;
 }
 
 .doc-info {
@@ -41,6 +43,8 @@
     border: none;
 }
 
-td, th {
-    background-color: #f1faee !important;
+.material-symbols-outlined {
+    font-size: 2em;
 }
+
+
