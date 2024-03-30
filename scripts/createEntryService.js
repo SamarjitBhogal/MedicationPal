@@ -57,6 +57,12 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
     const name = document.getElementById('name').value;
     const type = document.getElementById('type').value;
     const time = document.getElementById('time').value;
+    /* 
+        these 2 values below are used to make a Date object that we can use to easily get the hours and minutes 
+        to do these use: getHours() and getMinutes() on the date object
+    */
+    var hours;
+    var mins;
     const desc = document.getElementById('desc').value;
     const repeat = document.getElementById('repeat').value;
     const dose = document.getElementById('dose').value;
@@ -77,22 +83,40 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
     });
     // make the days selected populate an array:
     var daysArray = days.split('-');
-
+    // deduce what the schedule type will be:
     if (daysArray.length == 7) {
         scheduleType = "daily";
     } else {
         scheduleType = "select-days";
     }
 
+    // making time as a number:
+    var timeArray = time.split(":");
+    var timeAsString = "";
+    timeArray.forEach((t) => {
+        timeAsString += t;
+    });
+    var timeAsNumber = parseInt(timeAsString);
+    // these values are assigned
+    hours = timeArray[0];
+    mins = timeArray[1];
+
     // Adding medication entry
+    /* 
+        We are no longer storing time as a String. We will have 2 options
+        1. time as a number
+        2. time from a Date object    
+    */
     colMedicationRef.add({
         user: userID,
         name: name,
         type: type,
-        dose: dose,
+        dose: parseInt(dose),
         desc: desc,
         repeat: repeat,
         end: endDate,
+        time: new Date(0, 0, 0, hours, mins),
+        timeNum: timeAsNumber,
         scheduleType: scheduleType,
     })
     .then(function(docRefMedication) {
@@ -100,7 +124,7 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         if (scheduleType == "daily") {
             // adding a daily schedule
             colMedicationRef.doc(docRefMedication.id).collection('scheduleInfo').add({
-                time: time,
+                time: new Date(0, 0, 0, hours, mins),
                 status: false
             }).then(() => {
                 console.log("daily schedule added.");
@@ -112,9 +136,9 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
             for (let i = 0; i < daysArray.length; i++) {
                 // day will be one of 0-6 which is sun-sat
                 colMedicationRef.doc(docRefMedication.id).collection('scheduleInfo').add({
-                    day: daysArray[i],
-                    time: time,
-                    staus: false
+                    day: parseInt(daysArray[i]),
+                    time: timeAsNumber,
+                    status: false
                 }).then((scheduleDoc) => {
                     scheduleDocs.push(scheduleDoc);
                     console.log(i + "day is added in select-days schedule.");

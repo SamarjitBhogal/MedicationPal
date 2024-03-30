@@ -22,6 +22,8 @@
     <!-- Other libraries go here -->
     <!-- This is the CDN for bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
     <!-- Firebase libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -40,7 +42,27 @@
 <body class="hot-bar-m">
     <div id="nav-placeholder"></div>
     <div class="homepage">
-        <h1 class="text-center my-5 c-1d3557">Hello, <span id="user-name">username</span></h1>
+        <h1 class="text-center my-4">Hello, <span id="user-name"></span></h1>
+
+        <h3 class="text-center c-1d3557">Your Schedule Today</h3>
+        <template id="entry-template">
+            <div class="py-2 mx-4 mb-3 entry-card">
+                <h4 id="medi-time" class="c-1d3557">0:00 AM</h4>
+                <div class="card border-0 rounded-4 bg-a8dadc">
+                    <div class="d-flex justify-content-evenly align-items-center">
+                        <div><span class="material-symbols-outlined">pill</span></div>
+                        <div>
+                            <p>Name: <span id="medi-name">med name</span></p>
+                            <p>Dose: <span id="medi-dose">#</span> Pill(s)</p>
+                            <p id="medi-status">status</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <div id="MedicationInfo-display"></div>
+
         <div class="container mb-4">
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item mb-3 bg-a8dadc">
