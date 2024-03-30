@@ -15,11 +15,44 @@ function displayEntries() {
 
         db.collection("MedicationInfo").where("user", "==", userID).orderBy("timeNum").get().then((entries) => {
             entries.forEach((entry) => {
-                mediTime = new Date(entry.data().time.seconds*1000);
                 // check if first daily type and handle it a different way
                 if (entry.data().scheduleType == "daily") {
                     // display regardless of day
+                    db.collection("MedicationInfo").doc(entry.id).collection("scheduleInfo").get().then((schedules) => {
+                        schedules.forEach((sche) => {
+                            mediTime = new Date(entry.data().time.seconds*1000);
+                            let newEntry = entryTemp.content.cloneNode(true);
+                            mediName = entry.data().name;
+                            mediDose = entry.data().dose;
+                            mediHours = mediTime.getHours();
+                            mediMinutes = mediTime.getMinutes();
 
+                            if (entry.data().timeNum - 1200 < 0) {
+                                //the AM assignment
+                                mediTime = mediHours + ":" + mediMinutes + " AM";
+                            } else {
+                                //the PM assignment
+                                // checks if time is greater than or equal to 1300 and minus 12 to displat 12 hour time format
+                                entry.data().timeNum >= 1300 ? mediTime = (mediHours -12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
+                            }
+                            
+                            if (sche.data().status) {
+                                mediStatus = "Completed";
+                            } else {
+                                mediStatus = "Not Yet Taken";
+                            }                            
+
+                            newEntry.querySelector('#medi-time').innerHTML = mediTime;
+                            newEntry.querySelector('#medi-name').innerHTML = mediName;
+                            newEntry.querySelector('#medi-dose').innerHTML = mediDose;
+                            newEntry.querySelector('#medi-status').innerHTML = mediStatus;
+
+                            //attach this entry to MedicationInfo-display div
+                            document.getElementById("MedicationInfo-display").appendChild(newEntry);
+                        });
+                    }).catch((e) => {
+                        console.error("Cound not find dailiy schedules: ", e);
+                    })
                 } else {
                     // if not then handle it select-day way
                     db.collection("MedicationInfo").doc(entry.id).collection("scheduleInfo").where("day", "==", currDay)
@@ -27,6 +60,7 @@ function displayEntries() {
                         if (!schedules.empty) {
                             //displaying the entries that occur today ONLY
                             schedules.forEach((sche) => {
+                                mediTime = new Date(entry.data().time.seconds*1000);
                                 let newEntry = entryTemp.content.cloneNode(true);
                                 mediName = entry.data().name;
                                 mediDose = entry.data().dose;
@@ -48,7 +82,6 @@ function displayEntries() {
                                     mediStatus = "Not Yet Taken";
                                 }                            
 
-                                // is queryselector needed?
                                 newEntry.querySelector('#medi-time').innerHTML = mediTime;
                                 newEntry.querySelector('#medi-name').innerHTML = mediName;
                                 newEntry.querySelector('#medi-dose').innerHTML = mediDose;
@@ -58,7 +91,7 @@ function displayEntries() {
                                 document.getElementById("MedicationInfo-display").appendChild(newEntry);
                             });
                         } else {
-                            console.log("No scehdules today");
+                            console.log("No select-type scehdules today");
                         }                       
                     }).catch((e) => {
                         console.error("Could not find today's entries: ", e);
