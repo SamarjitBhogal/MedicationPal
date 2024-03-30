@@ -55,21 +55,21 @@ function displaySchedule() {
                                     (day) => {
                                         switch (day) {
                                             case "sun":
-                                                sche[0][j] = name + "\n" + realTime;
+                                                sche[0][j] = name + "<br>" + realTime;
                                                 console.log(sche[0][j]);  // for debug
                                                 break;
                                             case "mon":
-                                                sche[1][j] = name + "\n" + realTime; break;
+                                                sche[1][j] = name + "<br>" + realTime; break;
                                             case "tues":
-                                                sche[2][j] = name + "\n" + realTime; break;
+                                                sche[2][j] = name + "<br>" + realTime; break;
                                             case "wed":
-                                                sche[3][j] = name + "\n" + realTime; break;
+                                                sche[3][j] = name + "<br>" + realTime; break;
                                             case "thurs":
-                                                sche[4][j] = name + "\n" + realTime; break;
+                                                sche[4][j] = name + "<br>" + realTime; break;
                                             case "fri":
-                                                sche[5][j] = name + "\n" + realTime; break;
+                                                sche[5][j] = name + "<br>" + realTime; break;
                                             case "sat":
-                                                sche[6][j] = name + "\n" + realTime; break;
+                                                sche[6][j] = name + "<br>" + realTime; break;
                                             default:
                                                 console.log("Wrong date!")
 
