@@ -47,12 +47,12 @@
         <h3 class="text-center c-1d3557">Your Schedule Today:</h3>
         <template id="entry-template">
             <div class="py-2 mx-4 mb-3">
-                <h4 id="medi-time" class="c-1d3557">0:00 AM</h4>
+                <h4 class="medi-time c-1d3557">0:00 AM</h4>
                 <button class="entry-btn" type="button">
                     <div class="card entry-card border-0 rounded-4 py-2 bg-a8dadc">
-                        <div class="d-flex justify-content-evenly align-items-center">
-                            <div><span class="material-symbols-outlined">pill</span></div>
-                            <div>
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="ms-4"><span class="material-symbols-outlined">pill</span></div>
+                            <div class="ms-4 ps-4 medi-entry-info">
                                 <p><span id="medi-name">med name</span></p>
                                 <p>Take <span id="medi-dose">#</span> Pill(s)</p>
                                 <p id="medi-status">status</p>
@@ -64,8 +64,14 @@
         </template>
 
         <div id="MedicationInfo-display"></div>
+
+        <div class="text-center">
+            <button type="button" class="btn m-1 bg-457b9d c-f1faee remove-border view-btn rounded-3"><a href="/pages/viewentries.html"
+                class="c-f1faee">View Entries</a></button>
+        </div>
+        
         <hr class="mx-3">
-        <div class="doc-info bg-a8dadc p-4 mt-3 mb-5 rounded-4 text-center mx-4">
+        <div class="doc-info bg-a8dadc p-4 mt-3 mb-3 rounded-4 text-center mx-4">
             <p>
                 <span>
                     Your doctor's information:
