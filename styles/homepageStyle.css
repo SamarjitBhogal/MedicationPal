@@ -17,8 +17,29 @@ td, th {
     right: 2%;
 }
 
+#medi-name {
+    font-size: x-large;
+}
+
+.view-btn:active, .view-btn:focus {
+    background-color: #1d3557;
+}
+
+.medi-entry-info {
+    border-left: 3px solid black;
+}
+
 .entry-card {
-    /* background-color: #a8dadc; */
+    color: black;
+    box-shadow: 2px 2px 3px black;
+}
+
+.no-schedule-card {
+    text-align: center;
+    background-color: #a8dadc;
+    margin: 10px 25px 10px 25px;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .entry-card p {
