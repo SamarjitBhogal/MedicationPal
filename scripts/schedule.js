@@ -24,63 +24,33 @@ function displaySchedule() {
             const userEntriesSnapshot = await db.collection("MedicationInfo").where("user", "==", userID).get();
             const promises = userEntriesSnapshot.docs.map(async (entry) => {
                 const name = entry.data().name;
-                const scheInfo = entry.data().schedule;
-                console.log(scheInfo); // for debug 
-                await db.collection("schedule").where(firebase.firestore.FieldPath.documentId(), '==', scheInfo).get().then(
-                    (userSchedules) => {
-                        userSchedules.forEach(
-                            (doc) => {
-                                let days = doc.data().days.split("-");
-                                let realTime = doc.data().time;
-                                let time = parseInt(realTime);
-                                let j;
-                                if (time < 8)
-                                    j = 1;
-                                else if (time < 10)
-                                    j = 2;
-                                else if (time < 12)
-                                    j = 3;
-                                else if (time < 14)
-                                    j = 4;
-                                else if (time < 16)
-                                    j = 5;
-                                else if (time < 18)
-                                    j = 6;
-                                else if (time < 20)
-                                    j = 7;
-                                else
-                                    j = 8;
-                                console.log(j);  // for debug
-                                days.forEach(
-                                    (day) => {
-                                        switch (day) {
-                                            case "sun":
-                                                sche[0][j] = name + "<br>" + realTime;
-                                                console.log(sche[0][j]);  // for debug
-                                                break;
-                                            case "mon":
-                                                sche[1][j] = name + "<br>" + realTime; break;
-                                            case "tues":
-                                                sche[2][j] = name + "<br>" + realTime; break;
-                                            case "wed":
-                                                sche[3][j] = name + "<br>" + realTime; break;
-                                            case "thurs":
-                                                sche[4][j] = name + "<br>" + realTime; break;
-                                            case "fri":
-                                                sche[5][j] = name + "<br>" + realTime; break;
-                                            case "sat":
-                                                sche[6][j] = name + "<br>" + realTime; break;
-                                            default:
-                                                console.log("Wrong date!")
-
-                                        }
-                                    }
-                                )
-                            }
+                const time = entry.data().timeNum;
+                let j;
+                if (time < 800)
+                    j = 1;
+                else if (time < 1000)
+                    j = 2;
+                else if (time < 1200)
+                    j = 3;
+                else if (time < 1400)
+                    j = 4;
+                else if (time < 1600)
+                    j = 5;
+                else if (time < 1800)
+                    j = 6;
+                else if (time < 2000)
+                    j = 7;
+                else
+                    j = 8;
+                await entry.ref.collection("scheduleInfo").get().then(
+                    allEntries => {
+                        allEntries.forEach(doc => {
+                            let day = doc.data().day;
+                            sche[day][j] = name + "<br>" + time;                           
+                        }
                         )
                     }
                 )
-
             });
             await Promise.all(promises);
             // create table tr from firebase data.
