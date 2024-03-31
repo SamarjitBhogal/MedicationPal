@@ -147,15 +147,15 @@ function displaySelectDayEntries(entry) {
             display = false;
         }  
         // used for displaying "no medication today"
-        if (!display && selectDayCount == 0) {
-            // handle no schedule
-            let heading = document.createElement("h5");
-            let card = document.createElement("div");
-            heading.innerHTML= "No medication today"
-            card.setAttribute("class", "no-schedule-card");
-            card.appendChild(heading);
-            document.getElementById("MedicationInfo-display").appendChild(card);
-        }                     
+        // if (!display && selectDayCount == 0) {
+        //     // handle no schedule
+        //     let heading = document.createElement("h5");
+        //     let card = document.createElement("div");
+        //     heading.innerHTML= "No medication today"
+        //     card.setAttribute("class", "no-schedule-card");
+        //     card.appendChild(heading);
+        //     document.getElementById("MedicationInfo-display").appendChild(card);
+        // }                     
     }).catch((e) => {
         console.error("Could not find today's entries: ", e);
     });
