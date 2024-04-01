@@ -93,6 +93,17 @@ a {
 .navbar-toggler {
     border: none;
 }
+/* 
+.nav-after-login {
+    position: relative;
+}
+
+.nav-logo-after-login {
+    position: absolute;
+    left: 50%;
+    margin-left: -60px !important; 
+    display: block;
+} */
 
 .bi-house-heart, .bi-calendar {
     font-size: xx-large;
