@@ -80,7 +80,7 @@ a {
 }
 
 .logo {
-    height: 40px;
+    height: 60px;
 }
 
 .nav-item {
@@ -121,7 +121,7 @@ a {
 }
 
 .form-group{
-text-align: center;
+    text-align: center;
 }
 
 .land-img {
@@ -140,3 +140,4 @@ text-align: center;
 .btn {
     border: none;
 }
+

@@ -1,0 +1,30 @@
+.doctor-btns button:first-of-type:active {
+    background-color: #1d3557;
+    color: #f1faee;
+}
+
+.doctor-btns button:first-of-type:focus {
+    background-color: #e63946;
+    color: #f1faee;
+}
+
+.doctor-btns button:last-of-type:active {
+    background-color: #1d3557;
+    color: #f1faee;
+}
+
+.doctor-btns button:last-of-type:focus {
+    background-color: #a8dadc;
+    color: #1d3557;
+}
+
+.doctor-page {
+    font-size: larger;
+}
+
+.doctor-page input {
+    font-size: large;
+}
+.doctor-page button {
+    font-size: large;
+}

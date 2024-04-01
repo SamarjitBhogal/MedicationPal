@@ -1,29 +1,27 @@
 var userid;
-var medicineItem;
-var doneItem;
+var medicineItem = 0;
+var doneItem = 0;
+var date = new Date();
+var currDay = date.getDay();
 function setProgressBar(collection1, collection2) {
     firebase.auth().onAuthStateChanged(user => {
         userid = user.uid;
         db.collection(collection1).where("user","==",userid).get()
-        .then(
-            function(querySnapshot) {
-                medicineItem = querySnapshot.size;
-                console.log('Number of medicineItem:', medicineItem);
+        .then(allEntries => {
+            allEntries.forEach(async doc => {
+                await doc.ref.collection(collection2).where("day", "==", currDay).get().then(
+                    allSchedule => {
+                        allSchedule.forEach(async doc => {
+                            medicineItem += 1;
+                            if (doc.data().status == true){
+                                doneItem += 1;
+                            }
+                        })    
+                    })
                 updateProgressBar();
-            }).catch(function(error) {
-                console.error('Error getting medicineItem:', error);
-            });
-        db.collection(collection2).where("user","==",userid).get()
-        .then(
-            function(querySnapshot) {
-                doneItem = querySnapshot.size;
-                console.log('Number of doneItem:', doneItem);
-                updateProgressBar();
-            }).catch(function(error) {
-                console.error('Error getting doneItem:', error);
-            });
+            })
+        })      
     })
-
 };
 
 function updateProgressBar() {
@@ -37,4 +35,4 @@ function updateProgressBar() {
     }
 };
 
-setProgressBar("MedicationInfo","Progress");
+setProgressBar("MedicationInfo","scheduleInfo");
