@@ -15,25 +15,27 @@ function displayCardsDynamically(collection) {
                 allEntries.forEach(async doc => { //iterate thru each doc
                     var name = doc.data().name;
                     var type = doc.data().type;
-                    var desc = doc.data().desc;
-                    var scheInfo = doc.data().schedule;
-                    var date;
-                    var time;
-                    await db.collection("schedule").where(firebase.firestore.FieldPath.documentId(), '==', scheInfo).get().then(
-                        (userSchedules) => {
-                            userSchedules.forEach(
-                                (doc) => {
-                                    date = doc.data().days;
-                                    time = doc.data().time;
-                                    console.log(date + time);
-                                }
+                    var desc = "Medication Description: " + doc.data().desc;
+                    var time = doc.data().timeNum;
+                    var dose = "Medication dosage: " + doc.data().dose + " Pills every time.";
+                    var days ="";   
+                    var DaysName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];               
+                    await doc.ref.collection("scheduleInfo").orderBy("day").get().then(
+                        allEntries => {
+                            allEntries.forEach(doc => {
+                                if (days == "")
+                                days += DaysName[doc.data().day];
+                                else
+                                days += "/" + DaysName[doc.data().day];
+                                console.log(days);
+                            }
                             )
                         }
-                    );
+                    )
                     var tr = document.createElement('tr');
                     tr.className = "medicationRow";
                     tr.onclick = function () {
-                        document.getElementById("medicationMedal").innerHTML = desc;
+                        document.getElementById("medicationMedal").innerHTML = desc + "<br>" + dose + "<br>" + "Take Pills in following days: " + days;
                         modal.style.display = "block";
                     };
                     var th = tr.appendChild(document.createElement('th'));
@@ -42,8 +44,6 @@ function displayCardsDynamically(collection) {
                     td1.innerHTML = name;
                     var td2 = tr.appendChild(document.createElement('td'));
                     td2.innerHTML = type;
-                    var td4 = tr.appendChild(document.createElement('td'));
-                    td4.innerHTML = date;
                     var td5 = tr.appendChild(document.createElement('td'));
                     td5.innerHTML = time;
                     console.log(name);
@@ -65,12 +65,5 @@ function displayCardsDynamically(collection) {
     }
 }
 
+
 displayCardsDynamically("MedicationInfo");  //input param is the name of the collection
-
-
-
-
-
-
-
-
