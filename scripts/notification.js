@@ -10,12 +10,12 @@ function populateUserInfo() {
             currentUser.get()
                 .then(userDoc => {
                     //get the data fields of the user
-                    let userEmail3 = userDoc.data().email3;
+                    let userEmail = userDoc.data().email;
                     let DocNum = userDoc.data().PhoneNum; //name of field in db
 
                     //if the data fields are not empty, then write them in to the form.
-                    if (userEmail3 != null) {
-                        document.getElementById("email3").value = userEmail3; //uhh
+                    if (userEmail != null) {
+                        document.getElementById("email3").value = userEmail; //uhh
                     }
                     if (DocNum != null) {
                         document.getElementById("phoneNum").value = DocNum; //one of these is for the phone
@@ -36,8 +36,9 @@ function editUserInfo() {
     document.getElementById('personalInfoFields').disabled = false;
  }
 
-function saveUserInfo() {
+function saveUserInfo(event) {
     //enter code here
+    event.preventDefault();
 
     //a) get user entered values
     userEmail3 = document.getElementById('email3').value;       //good
@@ -47,12 +48,12 @@ function saveUserInfo() {
     currentUser.update({
         email3: userEmail3,
         PhoneNum: DocNum, //good
-    })
-        .then(() => {
+    }).then(() => {
             console.log("Document successfully updated!");
-        })
+    }).catch((e) => {
+        console.error("could not update notifications: ", e);
+    })
 }
-
 
 document.getElementById("toggleNotifications").addEventListener('click', (e) => {
     document.getElementById("bannerCheck").toggleAttribute("disabled");
