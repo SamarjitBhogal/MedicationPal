@@ -206,4 +206,45 @@ function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
     // hidding again to make sure entries that don't have true status don't have this button
     document.getElementById("undo-entry-display").toggleAttribute("hidden");
 }
+function doctersInfo() {
+    console.log("doctah is running");
+
+    // Reference to the Firestore database
+    const db = firebase.firestore();
+
+    // Reference to the specific document in Firestore
+    const docRef = db.collection("users").doc("gj57GjCGhMYzroanUf9U3YU6hEU2");
+
+    // Fetch the document from Firestore
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            // Access the data from the document
+            const data = doc.data();
+            const name2 = data.name2;
+            const num = data.num;
+            const email2 = data.email2;
+            const address = data.address;
+
+            // Concatenate or format both values together with a newline
+            const outputText = `<p> <b>Name: ${name2}<p> Phone Number:  ${num} <p> Email: ${email2}<p> Location: ${address} </b>`;
+
+            // Update the HTML with the concatenated value
+            document.getElementById("doctor-info-here").innerHTML += outputText;
+        } else {
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+}
+
+function notifPop(){
+    db.collection("MedicationInfo").doc(entry.id).collection("scheduleInfo").doc(time);
+
+}
+
+
+
+doctersInfo(); //runs the function
+
 displayEntries();
