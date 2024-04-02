@@ -1,7 +1,7 @@
 /* 
     Need to work on: 
-        - a message if there are no entries today (done)
-        - a message if there are no entries at all 
+        - a message if there are no entries today 
+        - a message if there are no entries at all (done)
         - have today's entries reset end of day if daily
             -  have the entries reset for select-days somehow 
         - deal with cut off end date with entries
@@ -12,39 +12,49 @@ var date = new Date();
 var currDay = date.getDay();
 // reference to the entry template DOM:
 let entryTemp = document.getElementById("entry-template");
-// these 2 used for displaying "no medication today":
-let display = true;
-let selectDayCount = 0;
-
-/* This function is responsible for displaying the medication entries on the homepage */
+/* 
+    This function is responsible for displaying the medication entries on the homepage
+    It calls other functions to help it do it's tasks.
+ */
 function displayEntries() { 
     firebase.auth().onAuthStateChanged(user => {
-        const userID = user.uid;        
-        // if I dont make in past this line i have no entries
+        const userID = user.uid;       
+        
+        refreshEntries();
+        
         db.collection("MedicationInfo").where("user", "==", userID).orderBy("timeNum").get().then((entries) => {
+            // if I dont make in past this line i have no entries
+            if (entries.empty) {
+                displayNoEntriesMessage();
+            } else {
+                // displays the view entry btn only if there are entries
+                document.getElementById("view-entries-btn").toggleAttribute("hidden");                
+            }
+            
             entries.forEach((entry) => {
                 // check if first daily type and handle it a different way
                 if (entry.data().scheduleType == "daily") {
                     // display regardless of day
+                    // this also means that no matter the day there will be an entry
                     displayDailyEntries(entry);                                       
                 } else {
                     // if not then handle it select-day way
-                    displaySelectDayEntries(entry);                    
+                    // this is where we handle to cases of there not being an entry
+                    displaySelectDayEntries(entry);                                  
                 }
             });
+            //displayNoEntryToday();
         }).catch((e) => {
             console.error("Could not find the user's entries: ", e);
         });         
     });
-    //reset values
-    display = true;
-    selectDayCount = 0;
 }
 
 function displayDailyEntries(entry) {
     db.collection("MedicationInfo").doc(entry.id).collection("scheduleInfo").get().then((schedules) => {
         if (!schedules.empty) {
             schedules.forEach((scheDaily) => {
+                // defining data needed to display entry
                 let mediTime = new Date(entry.data().time.seconds*1000);
                 let newEntry = entryTemp.content.cloneNode(true);
                 let mediName = entry.data().name;
@@ -138,27 +148,40 @@ function displaySelectDayEntries(entry) {
                 document.getElementById("entry-" + scheSelect.id).addEventListener('click', (e) => {
                     handleEntryModal(entry, scheSelect, mediStatus, scheSelect.data().status);
                 });
-                // used for displaying "no medication today"
-                selectDayCount++;
             });
         } else {
             console.log("No select-type scehdules today");
-            // used for displaying "no medication today"
-            display = false;
-        }  
-        // used for displaying "no medication today"
-        // if (!display && selectDayCount == 0) {
-        //     // handle no schedule
-        //     let heading = document.createElement("h5");
-        //     let card = document.createElement("div");
-        //     heading.innerHTML= "No medication today"
-        //     card.setAttribute("class", "no-schedule-card");
-        //     card.appendChild(heading);
-        //     document.getElementById("MedicationInfo-display").appendChild(card);
-        // }                     
+        }                    
     }).catch((e) => {
         console.error("Could not find today's entries: ", e);
     });
+}
+
+function displayNoEntryToday() {
+    console.log("displayNoEntryToday has been called");    
+    //display msg
+    if (!document.getElementById("MedicationInfo-display").hasChildNodes()) {
+        let heading = document.createElement("h5");
+        let card = document.createElement("div");
+        heading.innerHTML= "No medication today"
+        card.setAttribute("class", "no-schedule-card");
+        card.appendChild(heading);
+        document.getElementById("MedicationInfo-display").appendChild(card);
+    }    
+}
+
+function displayNoEntriesMessage() {
+    // show create entry button since there is no entries
+    document.getElementById("create-entries-btn").toggleAttribute("hidden");
+
+    let noEntryDisplay = document.createElement("div");
+    let heading = document.createElement("h5");
+
+    heading.innerHTML = "You have no entries currently.";
+    noEntryDisplay.setAttribute("class", "no-entries-card");
+
+    noEntryDisplay.appendChild(heading);
+    document.getElementById("MedicationInfo-display").appendChild(noEntryDisplay);
 }
 
 function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
@@ -206,6 +229,7 @@ function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
     // hidding again to make sure entries that don't have true status don't have this button
     document.getElementById("undo-entry-display").toggleAttribute("hidden");
 }
+
 function doctersInfo() {
     console.log("doctah is running");
 
@@ -243,8 +267,10 @@ function notifPop(){
 
 }
 
-
+function refreshEntries() {
+    // reset entries to uncomplete and reset progress
+}
 
 doctersInfo(); //runs the function
 
-displayEntries();
+displayEntries();  

@@ -65,21 +65,26 @@
 
         <div id="MedicationInfo-display"></div>
 
-        <div class="text-center">
-            <button type="button" class="btn m-1 bg-457b9d c-f1faee remove-border view-btn rounded-3"><a href="/pages/viewentries.html"
-                class="c-f1faee">View Entries</a></button>
+        <div id="view-entries-btn" class="text-center" hidden>
+            <button type="button" class="btn m-1 bg-457b9d c-f1faee remove-border view-btn rounded-3"><a
+                    href="/pages/viewentries.html" class="c-f1faee">View Entries</a></button>
         </div>
-        
+        <div id="create-entries-btn" class="text-center" hidden>
+            <button type="button" class="btn m-1 bg-457b9d c-f1faee remove-border create-entry-btn rounded-3"><a
+                    href="/pages/create-entry.html" class="c-f1faee"><img src="/images/heart-plus-svgrepo-com.svg"
+                        alt="create entry"><br>Create Entry</a></button>
+        </div>
+
         <hr class="mx-3">
         <div class="doc-info bg-a8dadc p-4 mt-3 mb-3 rounded-4 text-center mx-4">
             <p>
                 <span> <b>
-                    Your Doctor's Information:
+                        Your Doctor's Information:
                 </span> </b>
             </p>
             <p>
                 <span id="doctor-info-here">
-                    
+
                 </span>
             </p>
         </div>
