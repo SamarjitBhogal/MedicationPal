@@ -207,13 +207,15 @@ function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
     document.getElementById("undo-entry-display").toggleAttribute("hidden");
 }
 function doctersInfo() {
+    firebase.auth().onAuthStateChanged(user => {
+        const userID = user.uid; 
     console.log("doctah is running");
 
     // Reference to the Firestore database
     const db = firebase.firestore();
 
     // Reference to the specific document in Firestore
-    const docRef = db.collection("users").doc("gj57GjCGhMYzroanUf9U3YU6hEU2");
+    const docRef = db.collection("users").doc(userID);
 
     // Fetch the document from Firestore
     docRef.get().then((doc) => {
@@ -236,7 +238,7 @@ function doctersInfo() {
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
-}
+    })}
 
 function notifPop(){
     db.collection("MedicationInfo").doc(entry.id).collection("scheduleInfo").doc(time);
