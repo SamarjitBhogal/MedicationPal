@@ -285,13 +285,13 @@ function updateDateTime() {
     document.querySelector('#datetime').textContent = currentDateTime;
     var d = new Date(); // for now
     const hr = d.getHours(); // => 
-    const min = d.getMinutes(); // =>  
+    const min = d.getMinutes(); // => 
+    const sec = d.getSeconds();
 
 
-    combi = "" + hr + min;
+    combi = "" + hr + min + sec / 100;
     typeof Number(combi);
     console.log(combi);
-
 }
 
 // call the `updateDateTime` function every second
@@ -337,9 +337,10 @@ function notifPop(collection) {
                 var d = new Date(); // for now
                 const hr = d.getHours(); // => getting hours of the current time
                 const min = d.getMinutes(); // =>  getting minutes of the current time
+                const sec = d.getSeconds();
 
                 //concatenating both of them together
-                combi = "" + hr + min;
+                combi = "" + hr + min + sec / 100;
                 //typecast that to a number
                 typeof Number(combi);
                 //print out to see current number
@@ -348,18 +349,19 @@ function notifPop(collection) {
 
                 db.collection(collection).where("user", "==", userid).get()
                     .then(allEntries => {
-                        allEntries.forEach(async doc => { //iterate thru each doc
+                        allEntries.forEach(doc => { //iterate thru each doc
                             var time = doc.data().timeNum; //time is local in here so i gotta do everything in here HAHAHAHAH
                             console.log(time);
                             //i want to access all times for each medication entry of the user (done)
 
+                            //time hours == curr == hours && time min == curr min && time sec >= curr sec - 10 && time sec <= curr + 10
                             if (time == combi) {
                                 myFunction()
                                 console.log("WORKING ! ! ! ! ! ");
                                 //this does not update live in the console ->
                                 //it only appears when you enter the homepage at the specific time.
                                 //a problem is that it is for all times, does not consider day  of the week
-
+                                combi = combi * 1000;
                                 
 
 
@@ -382,6 +384,7 @@ function myFunction() {
     //customize this to tell you what medication you need to take
     //can include other stuff?
     //hahaha mvp hahahah
+    location.reload();
     alert("It's time to take your medication");
   }
 

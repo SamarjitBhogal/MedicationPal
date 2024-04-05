@@ -33,7 +33,7 @@ document.getElementById('remove1').addEventListener('click', () => {
 /* Holds the images uploaded be the user */
 var imageFile1;
 //event listener for the file input
-document.getElementById("medImg-1").addEventListener('change', () => {
+document.getElementById("medImg-1").addEventListener('change', (e) => {
         console.log("file input1 change noticed.");
         imageFile1 = e.target.files[0];
         // displaying conformation message in HTML:

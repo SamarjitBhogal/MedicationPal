@@ -34,8 +34,28 @@ function displayCardsDynamically(collection) {
                     var tr = document.createElement('tr');
                     tr.className = "medicationRow";
                     tr.onclick = function () {
-                        document.getElementById("medicationMedal").innerHTML = desc + "<br>" + dose + "<br>" + "Take Pills in following days: " + days;
-                        modal.style.display = "block";
+                        // document.getElementById("medicationMedal").innerHTML = desc + "<br>" + dose + "<br>" + "Take Pills in following days: " + days;
+                        // modal.style.display = "block";
+
+                        db.collection("MedicationInfo").doc(doc.id).get().then(async doc => {
+                            document.getElementById('modal-medi-name').innerHTML = doc.data().name;
+                            document.getElementById('dose').innerHTML = doc.data().dose;
+                            document.getElementById('schedule-type').innerHTML = await getScheduleType(doc).then(value => {
+                                return value;
+                            });
+                            document.getElementById('desc').innerHTML = doc.data().desc;
+                            document.getElementById('time').innerHTML = getTime(doc);
+                            if (doc.data().image != null && !document.getElementById('medi-img').hasChildNodes()) {
+                                let img = document.createElement('img');
+                                img.setAttribute('id', 'img-' + doc.id);
+                                img.setAttribute('class', 'modal-medi-image');
+                                img.setAttribute('src', doc.data().image);
+                                document.getElementById('medi-img').appendChild(img);
+                            }
+                            setUpModal();
+                            const entryConf = new bootstrap.Modal(document.getElementById("entry-info"));
+                            entryConf.show();
+                        });
                     };
                     var td1 = tr.appendChild(document.createElement('td'));
                     td1.innerHTML = name;
@@ -58,6 +78,70 @@ function displayCardsDynamically(collection) {
     span.onclick = function () {
         modal.style.display = "none";
     }
+}
+
+async function getScheduleType(doc) {
+    let scheType = doc.data().scheduleType;
+
+    if (scheType == "daily") {
+        return "Daily";
+    }
+
+    let selectDay = "Every";
+    let i = 0;
+
+    await db.collection("MedicationInfo").doc(doc.id).collection("scheduleInfo")
+    .get().then((schedules) => {
+       schedules.forEach(schedule => {
+            // Remember 0-6 == sun-sat
+            (i < 0)? selectDay += ", " : selectDay += " ";
+            switch (schedule.data().day) {
+                case 0:
+                    selectDay += "Sunday";
+                    break;
+                case 1:
+                    selectDay += "Monday";
+                    break;
+                case 2:
+                    selectDay += "Tuesday";
+                    break;
+                case 3:
+                    selectDay += "Wednesday";
+                    break;
+                case 4:
+                    selectDay += "Thursday";
+                    break;
+                case 5:
+                    selectDay += "Friday";
+                    break;
+                case 6:
+                    selectDay += "Saturday";
+                    break;
+            }
+            i--;
+        });
+        // console.log("here " + selectDay);
+        // return selectDay;
+    }).catch((e) => {
+        console.error("Could not find select days: ", e);
+    });
+
+    return selectDay;
+}
+
+function getTime(doc) {
+    let mediTime = new Date(doc.data().time.seconds * 1000);
+    let mediHours = mediTime.getHours();
+    let mediMinutes = mediTime.getMinutes();
+    if (doc.data().timeNum - 1200 < 0) {
+        //the AM assignment
+        mediTime = mediHours + ":" + mediMinutes + " AM";
+    } else {
+        //the PM assignment
+        // checks if time is greater than or equal to 1300 and minus 12 to display 12 hour time format
+        doc.data().timeNum >= 1300 ? mediTime = (mediHours - 12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
+    }
+    return mediTime;
 }
 
 

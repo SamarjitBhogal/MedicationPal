@@ -22,6 +22,8 @@
   <!-- Other libraries go here -->
   <!-- This is the CDN for bootstrap icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
   <!-- Firebase libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -43,7 +45,7 @@
 
   <table class="table">
     <thead>
-      <h1 style="text-align:center;"> Medication List </h1> <br>
+      <h1 class="text-center mt-4"> Your Medication </h1> <br>
     </thead>
     <tbody id="MedicationInfo-go-here">
       <tr class="table-active">
@@ -63,6 +65,43 @@
       <p id="medicationMedal">medication info in the Modal..</p>
     </div>
 
+  </div>
+
+  <!-- Modal that appears when clicking on an entry to show options -->
+  <div class="modal fade" id="entry-info" tabindex="-1" aria-labelledby="modal-medi-name" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-a8dadc rounded-4">
+        <div class="modal-header">
+          <h1 class="modal-title fs-3 c-1d3557 w-100 text-center" id="modal-medi-name">name goes here</h1>
+        </div>
+        <div class="modal-body text-center fs-4 c-1d3557">
+          <p>Take <span id="dose">x</span> Pill(s)</p>
+          <p>Occurrs: <span id="schedule-type">type</span></p>
+          <p>At time: <span id="time">time</span></p>
+          <p>Your Notes:<br><span id="desc">desc</span></p>
+          <div id="medi-img"></div>
+        </div>
+        <div class="modal-footer">
+          <div class="w-100 d-flex justify-content-evenly">
+            <div class="text-center">
+              <button id="edit-entry-btn" type="button"
+                class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
+                data-bs-dismiss="modal"><span class="material-symbols-outlined">
+                  edit
+                  </span></button>
+              <p>EDIT</p>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
+                data-bs-dismiss="modal"><span class="material-symbols-outlined">
+                  close
+                </span></button>
+              <p>CLOSE</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="footer-placeholder"></div>
