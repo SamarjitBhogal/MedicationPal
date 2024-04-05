@@ -11,7 +11,6 @@ function displayCardsDynamically(collection) {
 
         db.collection(collection).where("user", "==", userid).get()
             .then(allEntries => {
-                var i = 1;
                 allEntries.forEach(async doc => { //iterate thru each doc
                     var name = doc.data().name;
                     var type = doc.data().type;
@@ -38,8 +37,6 @@ function displayCardsDynamically(collection) {
                         document.getElementById("medicationMedal").innerHTML = desc + "<br>" + dose + "<br>" + "Take Pills in following days: " + days;
                         modal.style.display = "block";
                     };
-                    var th = tr.appendChild(document.createElement('th'));
-                    th.innerHTML = i;
                     var td1 = tr.appendChild(document.createElement('td'));
                     td1.innerHTML = name;
                     var td2 = tr.appendChild(document.createElement('td'));
@@ -48,8 +45,6 @@ function displayCardsDynamically(collection) {
                     td5.innerHTML = time;
                     console.log(name);
                     document.getElementById(collection + "-go-here").appendChild(tr);
-
-                    i++;   //Optional: iterate variable to serve as unique ID
                 })
             })
     });
