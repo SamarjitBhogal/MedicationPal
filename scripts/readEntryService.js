@@ -52,7 +52,6 @@ function displayCardsDynamically(collection) {
                                 img.setAttribute('src', doc.data().image);
                                 document.getElementById('medi-img').appendChild(img);
                             }
-                            setUpModal();
                             const entryConf = new bootstrap.Modal(document.getElementById("entry-info"));
                             entryConf.show();
                         });
@@ -143,6 +142,5 @@ function getTime(doc) {
     }
     return mediTime;
 }
-
 
 displayCardsDynamically("MedicationInfo");  //input param is the name of the collection
