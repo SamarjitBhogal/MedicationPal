@@ -6,6 +6,10 @@ p {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 td, th {
     background-color: #f1faee !important;
 }
@@ -88,5 +92,4 @@ td, th {
     height: 100%;
     text-align: left;
 }
-
 

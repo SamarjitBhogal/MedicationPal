@@ -5,19 +5,15 @@ function displayCardsDynamically(collection) {
     var userid;
     // Get the modal
     var modal = document.getElementById("myModal");
-    var modalTemplate = document.getElementById("view-entry-modal");
     firebase.auth().onAuthStateChanged(user => {
         userid = user.uid;
-        console.log(userid);
 
         db.collection(collection).where("user", "==", userid).get()
             .then(allEntries => {
                 allEntries.forEach(async doc => { //iterate thru each doc
                     var name = doc.data().name;
                     var type = doc.data().type;
-                    var desc = "Medication Description: " + doc.data().desc;
-                    var time = doc.data().timeNum;
-                    var dose = "Medication dosage: " + doc.data().dose + " Pills every time.";
+                    var time = getTime(doc);
                     var days ="";   
                     var DaysName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];               
                     await doc.ref.collection("scheduleInfo").orderBy("day").get().then(
@@ -27,7 +23,6 @@ function displayCardsDynamically(collection) {
                                 days += DaysName[doc.data().day];
                                 else
                                 days += "/" + DaysName[doc.data().day];
-                                console.log(days);
                             }
                             )
                         }
@@ -41,33 +36,12 @@ function displayCardsDynamically(collection) {
                     td2.innerHTML = type;
                     var td5 = tr.appendChild(document.createElement('td'));
                     td5.innerHTML = time;
-                    console.log(name);
                     document.getElementById(collection + "-go-here").appendChild(tr);
 
-                    let newModal = modalTemplate.content.cloneNode(true);
-
-                    newModal.querySelector('.modal').id = "medi-modal-" + doc.id;
-
-                    newModal.querySelector('#modal-medi-name').innerHTML = doc.data().name;
-                    newModal.querySelector('#dose').innerHTML = doc.data().dose;
-                    newModal.querySelector('#schedule-type').innerHTML = await getScheduleType(doc).then(value => {
-                        return value;
-                    });
-                    newModal.querySelector('#desc').innerHTML = doc.data().desc;
-                    newModal.querySelector('#time').innerHTML = getTime(doc);
-
-                    if (doc.data().image != null) {
-                        let img = document.createElement('img');
-                        img.setAttribute('id', 'img-' + doc.id);
-                        img.setAttribute('class', 'modal-medi-image');
-                        img.setAttribute('src', doc.data().image);
-                        newModal.querySelector('#medi-img').appendChild(img);
-                    }
-
-                    document.getElementById("modal-holder").appendChild(newModal);
+                    setupModal(doc);
 
                     document.getElementById("entry-" + doc.id).addEventListener('click', () => {
-                        db.collection("MedicationInfo").doc(doc.id).get().then(async doc1 => {
+                        db.collection("MedicationInfo").doc(doc.id).get().then(doc1 => {
                             const entryConf = new bootstrap.Modal(document.getElementById("medi-modal-" + doc1.id));
                             entryConf.show();
                         });
@@ -85,6 +59,36 @@ function displayCardsDynamically(collection) {
     span.onclick = function () {
         modal.style.display = "none";
     }
+}
+
+async function setupModal(doc) {
+    var modalTemplate = document.getElementById("view-entry-modal");
+    let newModal = modalTemplate.content.cloneNode(true);
+
+    newModal.querySelector('.modal').id = "medi-modal-" + doc.id;
+
+    newModal.querySelector('#modal-medi-name').innerHTML = doc.data().name;
+    newModal.querySelector('#dose').innerHTML = doc.data().dose;
+    newModal.querySelector('#schedule-type').innerHTML = await getScheduleType(doc).then(value => {
+        return value;
+    });
+    newModal.querySelector('#desc').innerHTML = doc.data().desc;
+    newModal.querySelector('#time').innerHTML = getTime(doc);
+    newModal.querySelector('#edit-entry-btn').id = "edit-entry-" + doc.id;
+
+    if (doc.data().image != null) {
+        let img = document.createElement('img');
+        img.setAttribute('id', 'img-' + doc.id);
+        img.setAttribute('class', 'modal-medi-image');
+        img.setAttribute('src', doc.data().image);
+        newModal.querySelector('#medi-img').appendChild(img);
+    }
+
+    document.getElementById("modal-holder").appendChild(newModal);
+
+    $("#edit-entry-" + doc.id).on('click', (e) => {
+        console.log("yes");
+    });
 }
 
 async function getScheduleType(doc) {
@@ -127,8 +131,6 @@ async function getScheduleType(doc) {
             }
             i--;
         });
-        // console.log("here " + selectDay);
-        // return selectDay;
     }).catch((e) => {
         console.error("Could not find select days: ", e);
     });

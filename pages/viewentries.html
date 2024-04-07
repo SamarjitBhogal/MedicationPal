@@ -88,11 +88,11 @@
             <div class="w-100 d-flex justify-content-evenly">
               <div class="text-center">
                 <button id="edit-entry-btn" type="button"
-                  class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
-                  data-bs-dismiss="modal"><span class="material-symbols-outlined">
-                    edit
+                  class="btn d-flex justify-content-center align-items-center bg-e63946 c-f1faee"
+                  data-bs-target="#edit-pane" data-bs-toggle="modal"><span class="material-symbols-outlined">
+                    delete_forever
                     </span></button>
-                <p>EDIT</p>
+                <p>DELETE</p>
               </div>
               <div class="text-center">
                 <button type="button" class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
@@ -102,6 +102,22 @@
                 <p>CLOSE</p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="edit-pane" aria-hidden="true" aria-labelledby="edit-pane-title" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="edit-pane-title">Modal 2</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Hide this modal and show the first with the button below.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
           </div>
         </div>
       </div>
