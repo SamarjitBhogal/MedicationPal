@@ -43,7 +43,7 @@
 <body class="hot-bar-m">
   <div id="nav-placeholder"></div>
 
-  <table class="table">
+  <table class="table fs-4">
     <thead>
       <h1 class="text-center mt-4"> Your Medication </h1> <br>
     </thead>
@@ -67,42 +67,46 @@
 
   </div>
 
+  <div id="modal-holder"></div>
+
   <!-- Modal that appears when clicking on an entry to show options -->
-  <div class="modal fade" id="entry-info" tabindex="-1" aria-labelledby="modal-medi-name" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-a8dadc rounded-4">
-        <div class="modal-header">
-          <h1 class="modal-title fs-3 c-1d3557 w-100 text-center" id="modal-medi-name">name goes here</h1>
-        </div>
-        <div class="modal-body text-center fs-4 c-1d3557">
-          <p>Take <span id="dose">x</span> Pill(s)</p>
-          <p>Occurrs: <span id="schedule-type">type</span></p>
-          <p>At time: <span id="time">time</span></p>
-          <p>Your Notes:<br><span id="desc">desc</span></p>
-          <div id="medi-img"></div>
-        </div>
-        <div class="modal-footer">
-          <div class="w-100 d-flex justify-content-evenly">
-            <div class="text-center">
-              <button id="edit-entry-btn" type="button"
-                class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
-                data-bs-dismiss="modal"><span class="material-symbols-outlined">
-                  edit
+  <template id="view-entry-modal">
+    <div class="modal fade" tabindex="-1" aria-labelledby="modal-medi-name" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-a8dadc rounded-4">
+          <div class="modal-header">
+            <h1 class="modal-title fs-1 c-1d3557 w-100 text-center" id="modal-medi-name">name goes here</h1>
+          </div>
+          <div class="modal-body fs-4 c-1d3557">
+            <p>Take <span id="dose">x</span> Pill(s)</p>
+            <p>Occurrs: <span id="schedule-type">type</span></p>
+            <p>At time: <span id="time">time</span></p>
+            <p>Your Notes:<br><span id="desc">desc</span></p>
+            <div id="medi-img"></div>
+          </div>
+          <div class="modal-footer">
+            <div class="w-100 d-flex justify-content-evenly">
+              <div class="text-center">
+                <button id="edit-entry-btn" type="button"
+                  class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
+                  data-bs-dismiss="modal"><span class="material-symbols-outlined">
+                    edit
+                    </span></button>
+                <p>EDIT</p>
+              </div>
+              <div class="text-center">
+                <button type="button" class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
+                  data-bs-dismiss="modal"><span class="material-symbols-outlined">
+                    close
                   </span></button>
-              <p>EDIT</p>
-            </div>
-            <div class="text-center">
-              <button type="button" class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
-                data-bs-dismiss="modal"><span class="material-symbols-outlined">
-                  close
-                </span></button>
-              <p>CLOSE</p>
+                <p>CLOSE</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </template>
 
   <div id="footer-placeholder"></div>
 

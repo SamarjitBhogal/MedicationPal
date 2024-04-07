@@ -5,6 +5,7 @@ function displayCardsDynamically(collection) {
     var userid;
     // Get the modal
     var modal = document.getElementById("myModal");
+    var modalTemplate = document.getElementById("view-entry-modal");
     firebase.auth().onAuthStateChanged(user => {
         userid = user.uid;
         console.log(userid);
@@ -33,29 +34,7 @@ function displayCardsDynamically(collection) {
                     )
                     var tr = document.createElement('tr');
                     tr.className = "medicationRow";
-                    tr.onclick = function () {
-                        // document.getElementById("medicationMedal").innerHTML = desc + "<br>" + dose + "<br>" + "Take Pills in following days: " + days;
-                        // modal.style.display = "block";
-
-                        db.collection("MedicationInfo").doc(doc.id).get().then(async doc => {
-                            document.getElementById('modal-medi-name').innerHTML = doc.data().name;
-                            document.getElementById('dose').innerHTML = doc.data().dose;
-                            document.getElementById('schedule-type').innerHTML = await getScheduleType(doc).then(value => {
-                                return value;
-                            });
-                            document.getElementById('desc').innerHTML = doc.data().desc;
-                            document.getElementById('time').innerHTML = getTime(doc);
-                            if (doc.data().image != null && !document.getElementById('medi-img').hasChildNodes()) {
-                                let img = document.createElement('img');
-                                img.setAttribute('id', 'img-' + doc.id);
-                                img.setAttribute('class', 'modal-medi-image');
-                                img.setAttribute('src', doc.data().image);
-                                document.getElementById('medi-img').appendChild(img);
-                            }
-                            const entryConf = new bootstrap.Modal(document.getElementById("entry-info"));
-                            entryConf.show();
-                        });
-                    };
+                    tr.setAttribute('id', "entry-" + doc.id);
                     var td1 = tr.appendChild(document.createElement('td'));
                     td1.innerHTML = name;
                     var td2 = tr.appendChild(document.createElement('td'));
@@ -64,8 +43,37 @@ function displayCardsDynamically(collection) {
                     td5.innerHTML = time;
                     console.log(name);
                     document.getElementById(collection + "-go-here").appendChild(tr);
-                })
-            })
+
+                    let newModal = modalTemplate.content.cloneNode(true);
+
+                    newModal.querySelector('.modal').id = "medi-modal-" + doc.id;
+
+                    newModal.querySelector('#modal-medi-name').innerHTML = doc.data().name;
+                    newModal.querySelector('#dose').innerHTML = doc.data().dose;
+                    newModal.querySelector('#schedule-type').innerHTML = await getScheduleType(doc).then(value => {
+                        return value;
+                    });
+                    newModal.querySelector('#desc').innerHTML = doc.data().desc;
+                    newModal.querySelector('#time').innerHTML = getTime(doc);
+
+                    if (doc.data().image != null) {
+                        let img = document.createElement('img');
+                        img.setAttribute('id', 'img-' + doc.id);
+                        img.setAttribute('class', 'modal-medi-image');
+                        img.setAttribute('src', doc.data().image);
+                        newModal.querySelector('#medi-img').appendChild(img);
+                    }
+
+                    document.getElementById("modal-holder").appendChild(newModal);
+
+                    document.getElementById("entry-" + doc.id).addEventListener('click', () => {
+                        db.collection("MedicationInfo").doc(doc.id).get().then(async doc1 => {
+                            const entryConf = new bootstrap.Modal(document.getElementById("medi-modal-" + doc1.id));
+                            entryConf.show();
+                        });
+                    });
+                });
+            });
     });
     window.onclick = function (event) {
         if (event.target == modal) {
