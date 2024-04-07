@@ -187,9 +187,13 @@ function displayNoEntriesMessage() {
 function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
     const entryConf = new bootstrap.Modal(document.getElementById("home-entry-conf"));
     entryConf.show();
-    //check if status is true then display undo btn
+    //check if status is true then display undo btn and hide take btn
     if (status) {
-        document.getElementById("undo-entry-display").toggleAttribute("hidden");
+        document.getElementById("undo-entry-display").style.display = "block";
+        document.getElementById("take-entry-display").style.display = "none";
+    } else {
+        document.getElementById("undo-entry-display").style.display = "none";
+        document.getElementById("take-entry-display").style.display = "block";
     }
 
     db.collection("MedicationInfo").doc(entryRef.id).get().then((doc) => {
@@ -210,6 +214,8 @@ function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
             }).catch((e) => {
                 console.error("Could not update status: ", e);
             });
+            // hidding again to make sure entries that don't have true status don't have this button
+            document.getElementById("undo-entry-display").toggleAttribute("hidden");
     });
 
     $('#take-entry-btn').on('click', (e) => {
@@ -226,8 +232,7 @@ function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
             });
     });
 
-    // hidding again to make sure entries that don't have true status don't have this button
-    document.getElementById("undo-entry-display").toggleAttribute("hidden");
+    
 }
 
 function doctersInfo() {
