@@ -33,7 +33,7 @@ function readProgressDynamically(collection) {
 function getTime(doc) {
     let mediTime = new Date(doc.data().time.seconds * 1000);
     let mediHours = mediTime.getHours();
-    let mediMinutes = mediTime.getMinutes();
+    let mediMinutes = ((mediTime.getMinutes() < 10)? "0" + mediTime.getMinutes() : mediTime.getMinutes());
     if (doc.data().timeNum - 1200 < 0) {
         //the AM assignment
         mediTime = mediHours + ":" + mediMinutes + " AM";

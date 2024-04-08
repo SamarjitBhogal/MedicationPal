@@ -60,7 +60,7 @@ function displayDailyEntries(entry) {
                 let mediName = entry.data().name;
                 let mediDose = entry.data().dose;
                 let mediHours = mediTime.getHours();
-                let mediMinutes = mediTime.getMinutes();
+                let mediMinutes = ((mediTime.getMinutes() < 10)? "0" + mediTime.getMinutes() : mediTime.getMinutes());
                 let mediStatus;
 
                 if (entry.data().timeNum - 1200 < 0) {
@@ -115,7 +115,7 @@ function displaySelectDayEntries(entry) {
                     let mediName = entry.data().name;
                     let mediDose = entry.data().dose;
                     let mediHours = mediTime.getHours();
-                    let mediMinutes = mediTime.getMinutes();
+                    let mediMinutes = ((mediTime.getMinutes() < 10)? "0" + mediTime.getMinutes() : mediTime.getMinutes());
                     let mediStatus;
 
                     if (entry.data().timeNum - 1200 < 0) {
@@ -294,7 +294,7 @@ function updateDateTime() {
     const sec = d.getSeconds();
 
 
-    combi = "" + hr + min + sec / 100;
+    combi = "" + hr + min;
     typeof Number(combi);
     console.log(combi);
 }
@@ -344,8 +344,10 @@ function notifPop(collection) {
                 const min = d.getMinutes(); // =>  getting minutes of the current time
                 const sec = d.getSeconds();
 
+                console.log("current: " + hr + " " + min + " " + sec);
+
                 //concatenating both of them together
-                combi = "" + hr + min + sec / 100;
+                combi = "" + hr + min;
                 //typecast that to a number
                 typeof Number(combi);
                 //print out to see current number
@@ -355,12 +357,15 @@ function notifPop(collection) {
                 db.collection(collection).where("user", "==", userid).get()
                     .then(allEntries => {
                         allEntries.forEach(doc => { //iterate thru each doc
-                            var time = doc.data().timeNum; //time is local in here so i gotta do everything in here HAHAHAHAH
-                            console.log(time);
+                            let mediTime = new Date(doc.data().time.seconds * 1000);
+                            let mediHour = mediTime.getHours();
+                            let mediMin = mediTime.getMinutes();
+                            let mediSec = mediTime.getSeconds();
+                            console.log(mediTime);
                             //i want to access all times for each medication entry of the user (done)
 
                             //time hours == curr == hours && time min == curr min && time sec >= curr sec - 10 && time sec <= curr + 10
-                            if (time == combi) {
+                            if (mediHour == hr && mediMin == min && (sec <= mediSec + 30 || sec >= mediSec - 30)) {
                                 myFunction()
                                 console.log("WORKING ! ! ! ! ! ");
                                 //this does not update live in the console ->
