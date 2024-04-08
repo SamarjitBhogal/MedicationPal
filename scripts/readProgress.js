@@ -17,10 +17,6 @@ function readProgressDynamically(collection) {
                                 var tr = document.createElement('tr');
                                 var th = tr.appendChild(document.createElement('th'));
                                 th.innerHTML = name;
-                                var td1 = tr.appendChild(document.createElement('td'));
-                                td1.innerHTML = dose;
-                                var td2 = tr.appendChild(document.createElement('td'));
-                                td2.innerHTML = type;
                                 var td4 = tr.appendChild(document.createElement('td'));
                                 td4.innerHTML = days;
                                 var td5 = tr.appendChild(document.createElement('td'));
