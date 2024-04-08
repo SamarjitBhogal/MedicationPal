@@ -47,28 +47,40 @@
     <h1 class="text-center my-4 c-1d3557">Create a Medication Entry</h1>
     <form class="c-1d3557" action="" id="medicationForm">
       <div class="card bg-a8dadc p-4 mb-4 border-0 rounded-4">
+        <h4 class="text-center mb-3 ">1. Tell Us About Your Medication</h4>
         <div class="mb-3">
           <label for="name" class="form-label">Medication Name:</label>
-          <input type="text" class="form-control" id="name" required>
+          <input type="text" class="form-control" id="name" required/>
         </div>
         <div class="mb-3">
-          <label for="type" class="form-label">Type:</label>
-          <input type="text" class="form-control" id="type" required>
+          <label for="type" class="form-label">Type of Medication:</label>
+          <input type="text" list="datalistOptions" class="form-control" id="type" placeholder="Type to search..." required/>
+          <datalist id="datalistOptions">
+            <option value="Vitamin">
+            <option value="Ibuprofen">
+            <option value="Antidepressant">
+            <option value="Antibiotic">
+            <option value="Supplement">
+            <option value="Ointment">
+            <option value="Eye drops"> 
+            <option value="Nasal Spray">
+          </datalist>
         </div>
         <label for="dose" class="form-label">Dosage:</label>
         <div class="input-group mb-3">
-          <input type="number" class="form-control" id="dose" value="1" max="10" min="1" required>
+          <input type="number" class="form-control" id="dose" value="1" max="10" min="1" required/>
           <button id="add1" class="btn btn-outline-secondary bg-457b9d c-f1faee" type="button"><i
               class="bi bi-caret-up"></i></button>
           <button id="remove1" class="btn btn-outline-secondary bg-457b9d c-f1faee" type="button"><i
               class="bi bi-caret-down"></i></button>
         </div>
         <div>
-          <label for="desc" class="form-label">Description:</label>
-          <textarea id="desc" class="form-control" rows="5"></textarea>
+          <label for="desc" class="form-label">Personal Notes:</label>
+          <textarea id="desc" class="form-control" rows="5" maxlength="100"></textarea>
         </div>
       </div>
       <div class="card bg-a8dadc p-4 mb-4 border-0 rounded-4">
+        <h4 class="text-center mb-3">2. When Would You Like To Take It?</h4>
         <div class="mb-3">
           <label for="date" class="form-label">Select Day(s):</label>
           <div class="d-flex justify-content-evenly align-items-center">
@@ -92,7 +104,7 @@
         <div class="mb-3">
           <label for="time" class="form-label">Select a time:</label>
           <div class="cs-form">
-            <input id="time" type="time" class="form-control" />
+            <input id="time" type="time" class="form-control" required/>
           </div>
         </div>
         <div class="mb-3">
@@ -104,12 +116,13 @@
         </div>
         <div class="mb-3">
           <label for="endDate">End Date</label>
-          <input id="endDate" class="form-control" type="date" />
+          <input id="endDate" class="form-control" type="date" required/>
         </div>
       </div>
 
       <div class="card bg-a8dadc p-4 border-0 rounded-4">
-        <p class="text-center">Upload prescription or image of your medication (optional):</p>
+        <h4 class="text-center mb-3">3. Would You Like Us To Save a Picture For You?</h4>
+        <p class="text-center"><i>Just in case you forget (optional)</i></p>
         <div class="text-center">
           <i class="bi bi-camera c-1d3557"></i>
           <div class="text-center">
@@ -121,7 +134,7 @@
       </div>
 
       <div class="mt-3 text-center">
-        <button type="submit" class="btn btn-primary bg-1d3557 c-f1faee remove-border save-btn">Save</button>
+        <button type="submit" class="btn btn-primary bg-1d3557 c-f1faee remove-border save-btn rounded-3">Save</button>
       </div>
     </form>
   </div>
@@ -137,13 +150,11 @@
           Leave it to us to remind you, just sit back and relax for now!&#128524;
         </div>
         <div class="modal-footer">
-          <button id="undo-btn" type="button" class="btn btn-secondary d-flex align-items-center bg-1d3557 c-f1faee"
-            data-bs-dismiss="modal"><span class="material-symbols-outlined">
-              undo
-            </span></button>
-          <button type="button" class="btn bg-457b9d c-f1faee" data-bs-dismiss="modal">Create Another</button>
+          <button id="undo-btn" type="button" class="btn btn-secondary d-flex align-items-center bg-e63946 c-f1faee"
+            data-bs-dismiss="modal">Undo</button>
+          <button type="button" class="btn bg-457b9d c-f1faee" data-bs-dismiss="modal" onclick="refreshForm()">Create Another</button>
           <button type="button" class="btn bg-457b9d c-f1faee" data-bs-dismiss="modal"><a
-              href="/pages/homepage.html">Done</a></button>
+              href="/pages/homepage.html">OK</a></button>
         </div>
       </div>
     </div>

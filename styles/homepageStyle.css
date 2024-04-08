@@ -6,6 +6,10 @@ p {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 td, th {
     background-color: #f1faee !important;
 }
@@ -35,6 +39,14 @@ td, th {
 }
 
 .no-schedule-card {
+    text-align: center;
+    background-color: #a8dadc;
+    margin: 10px 25px 10px 25px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.no-entries-card {
     text-align: center;
     background-color: #a8dadc;
     margin: 10px 25px 10px 25px;
@@ -80,5 +92,4 @@ td, th {
     height: 100%;
     text-align: left;
 }
-
 

@@ -2,6 +2,10 @@ p {
     margin: 0;
 }
 
+label {
+    font-size: large;
+}
+
 #medImg-1, #medImg-2 {
     display: none;
 }

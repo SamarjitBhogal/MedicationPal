@@ -33,7 +33,7 @@ document.getElementById('remove1').addEventListener('click', () => {
 /* Holds the images uploaded be the user */
 var imageFile1;
 //event listener for the file input
-document.getElementById("medImg-1").addEventListener('change', () => {
+document.getElementById("medImg-1").addEventListener('change', (e) => {
         console.log("file input1 change noticed.");
         imageFile1 = e.target.files[0];
         // displaying conformation message in HTML:
@@ -152,10 +152,6 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         console.log("Medication entry written with ID: ", docRefMedication.id);
         //upload the image to Storage on Firebase
         uploadImage(docRefMedication.id);
-        // Reset the form
-        document.getElementById('medicationForm').reset();
-        // reset the day selectors too with a function call.
-        resetDayBtns();
         // gives modal feedback of entry being created with a function call.
         const entryConf = new bootstrap.Modal(document.getElementById("entry-conf"));
         entryConf.show();
@@ -223,14 +219,6 @@ function putAndUpdate(img, docID) {
     });
 }
 
-//resets the day buttons to unselected and back to their normal colors
-function resetDayBtns() {
-    dayBtn.forEach(button => {
-        button.setAttribute('aria-pressed', false);
-        button.style.backgroundColor = "#457B9D";
-    });
-}
-
 function checkAllButtons() {
     let count = 0;
     dayBtn.forEach(button => {
@@ -244,4 +232,20 @@ function checkAllButtons() {
     } else {
         document.getElementById("repeat").value = "weekly";
     }
+}
+
+/*
+    Resets the form.
+*/
+function refreshForm() {
+    document.getElementById('medicationForm').reset();
+    resetDayBtns();
+}
+
+//resets the day buttons to unselected and back to their normal colors
+function resetDayBtns() {
+    dayBtn.forEach(button => {
+        button.setAttribute('aria-pressed', false);
+        button.style.backgroundColor = "#457B9D";
+    });
 }
