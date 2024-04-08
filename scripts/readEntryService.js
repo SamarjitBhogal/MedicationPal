@@ -74,7 +74,9 @@ async function setupModal(doc) {
     });
     newModal.querySelector('#desc').innerHTML = doc.data().desc;
     newModal.querySelector('#time').innerHTML = getTime(doc);
-    newModal.querySelector('#edit-entry-btn').id = "edit-entry-" + doc.id;
+    // for second modal:
+    newModal.querySelector('#entry-name').innerHTML = doc.data().name;
+    newModal.querySelector('#delete-entry-btn').id = "delete-entry-" + doc.id;
 
     if (doc.data().image != null) {
         let img = document.createElement('img');
@@ -86,8 +88,35 @@ async function setupModal(doc) {
 
     document.getElementById("modal-holder").appendChild(newModal);
 
-    $("#edit-entry-" + doc.id).on('click', (e) => {
-        console.log("yes");
+    $("#delete-entry-" + doc.id).on('click', (e) => {
+        db.collection('MedicationInfo').doc(doc.id).collection('scheduleInfo')
+        .get().then((schedules) => {
+            schedules.forEach((schedule) => {
+                db.collection('MedicationInfo').doc(doc.id).collection('scheduleInfo').doc(schedule.id).delete().then(() => {
+                    console.log("Deleted a schedule doc.");
+                }).catch((e) => {
+                    console.error("Could not delete schedule doc: ", e);
+                });
+            });
+        }).catch((e) => {
+            console.error("Could not get any schedules! ", e);
+        });
+        let image = doc.data().image;
+        //removing the medication entry and the image if there is one
+            db.collection('MedicationInfo').doc(doc.id).delete().then(() => {
+            if (image) {
+                let fireStorageImageLocation = storage.ref("images/" + doc.id + ".jpg");
+                fireStorageImageLocation.delete().then(() => {
+                    console.log("Image removed from Firebase Storage.")
+                }).catch((e) => {
+                    console.error("Image cound not be removed from Firebase Storage: ", e);
+                });
+            }
+            console.log("Removed medication entry.");
+            location.reload();
+        }).catch((e) => {
+            console.error("Medication entry cound not be removed from database: ", e);
+        });
     });
 }
 

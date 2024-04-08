@@ -75,19 +75,19 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-a8dadc rounded-4">
           <div class="modal-header">
-            <h1 class="modal-title fs-1 c-1d3557 w-100 text-center" id="modal-medi-name">name goes here</h1>
+            <h1 class="modal-title fs-1 c-1d3557 w-100 text-center" id="modal-medi-name"></h1>
           </div>
           <div class="modal-body fs-4 c-1d3557">
-            <p>Take <span id="dose">x</span> Pill(s)</p>
-            <p>Occurrs: <span id="schedule-type">type</span></p>
-            <p>At time: <span id="time">time</span></p>
-            <p>Your Notes:<br><span id="desc">desc</span></p>
+            <p>Take <span id="dose"></span> Pill(s)</p>
+            <p>Occurrs: <span id="schedule-type"></span></p>
+            <p>At time: <span id="time"></span></p>
+            <p>Your Notes:<br><span id="desc"></span></p>
             <div id="medi-img"></div>
           </div>
           <div class="modal-footer">
             <div class="w-100 d-flex justify-content-evenly">
               <div class="text-center">
-                <button id="edit-entry-btn" type="button"
+                <button type="button"
                   class="btn d-flex justify-content-center align-items-center bg-e63946 c-f1faee"
                   data-bs-target="#edit-pane" data-bs-toggle="modal"><span class="material-symbols-outlined">
                     delete_forever
@@ -106,18 +106,33 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="edit-pane" aria-hidden="true" aria-labelledby="edit-pane-title" tabindex="-1">
+    <div id="edit-pane" class="modal fade" tabindex="-1" aria-labelledby="modal-conf-name" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content bg-a8dadc rounded-4">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="edit-pane-title">Modal 2</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h1 class="modal-title fs-1 c-e63946 w-100 text-center" id="modal-conf-name">Delete: "<span id="entry-name"></span>"</h1>
           </div>
-          <div class="modal-body">
-            Hide this modal and show the first with the button below.
+          <div class="modal-body fs-4 c-1d3557 text-center">
+            Are you sure you want to delete this entry?<br><b>This action cannot be undone.</b>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+            <div class="w-100 d-flex justify-content-evenly">
+              <div class="text-center">
+                <button id="delete-entry-btn" type="button"
+                  class="btn d-flex justify-content-center align-items-center bg-e63946 c-f1faee"
+                  data-bs-target="#edit-pane" data-bs-toggle="modal"><span class="material-symbols-outlined">
+                    delete_forever
+                    </span></button>
+                <p>DELETE</p>
+              </div>
+              <div class="text-center">
+                <button type="button" class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee"
+                  data-bs-dismiss="modal"><span class="material-symbols-outlined">
+                    close
+                  </span></button>
+                <p>CANCEL</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
