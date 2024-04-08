@@ -90,18 +90,15 @@
             </p>
         </div>
         <div class="progress-card bg-a8dadc p-4 rounded-4 text-center mx-4">
-            <h5 class="mb-3">Your Progress So Far:</h5>
+            <h5 class="mb-3">Your Progress Today:</h5>
             <div class="progress med-pal-progessbar bg-f1faee mb-3" role="progressbar"
                 aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
                 id="progess-status">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-457b9d" style="width: 75%"></div>
+                <div id="Progress-bar-here" class="progress-bar progress-bar-striped progress-bar-animated bg-457b9d"
+                    style="width: 0%"></div>
             </div>
-            <p class="mb-3">
-                <span id="progress-msg">
-                    Well done! Keep up the good work!
-                </span>
-            </p>
-            <button type="button" class="btn bg-1d3557 c-f1faee remove-border prog-btn"><a class="c-f1faee" href="/pages/progress.html">View details</a></button>
+            <p class="mb-3"><span id="progress-msg"></span></p>
+            <button type="button" class="btn bg-457b9d c-f1faee remove-border prog-btn"><a class="c-f1faee" href="/pages/progress.html">View details</a></button>
         </div>
     </div>
 
@@ -156,7 +153,8 @@
     <script src="/scripts/navSkeleton.js"></script>
     <script src="/scripts/main.js"></script>
     <script src="/scripts/homepageEntries.js"></script>
-    <script src="/scripts/timer.js"></script>
+    <script src="/scripts/progressBar.js"></script>
+    <!-- <script src="/scripts/timer.js"></script> -->
 </body>
 
 </html>

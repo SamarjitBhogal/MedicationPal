@@ -38,13 +38,18 @@ function setProgressBar(collection1, collection2) {
 };
 
 function updateProgressBar() {
-    console.log('Number of doneItem:', doneItem);
-    console.log('Number of medicineItem:', medicineItem);
     // Check if both medicineItem and doneItem are defined before calculating ratio
     if (typeof medicineItem !== 'undefined' && typeof doneItem !== 'undefined') {
         var ratio = doneItem / medicineItem * 100;
-        console.log('Progress ratio:', ratio);
-        document.getElementById("Progress-bar-here").setAttribute('style','width:'+ratio+'%'); ;
+        document.getElementById("Progress-bar-here").setAttribute('style','width:'+ratio+'%');
+        if (ratio == 0) {
+            document.getElementById("progress-msg").innerHTML = "Remember to take your medication!";
+            document.getElementById("Progress-bar-here").setAttribute('style',"width:10%");
+        } else if (ratio <= 50) {
+            document.getElementById("progress-msg").innerHTML = "Almost there!";
+        } else if (ratio <= 100) {
+            document.getElementById("progress-msg").innerHTML = "Well done! Keep up the good work!";
+        }
     }
 };
 
