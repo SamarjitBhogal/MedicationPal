@@ -54,7 +54,17 @@
         </div>
         <div class="mb-3">
           <label for="type" class="form-label">Type of Medication:</label>
-          <input type="text" class="form-control" id="type" required/>
+          <input type="text" list="datalistOptions" class="form-control" id="type" placeholder="Type to search..." required/>
+          <datalist id="datalistOptions">
+            <option value="Vitamin">
+            <option value="Ibuprofen">
+            <option value="Antidepressant">
+            <option value="Antibiotic">
+            <option value="Supplement">
+            <option value="Ointment">
+            <option value="Eye drops"> 
+            <option value="Nasal Spray">
+          </datalist>
         </div>
         <label for="dose" class="form-label">Dosage:</label>
         <div class="input-group mb-3">
@@ -140,7 +150,7 @@
           Leave it to us to remind you, just sit back and relax for now!&#128524;
         </div>
         <div class="modal-footer">
-          <button id="undo-btn" type="button" class="btn btn-secondary d-flex align-items-center bg-1d3557 c-f1faee"
+          <button id="undo-btn" type="button" class="btn btn-secondary d-flex align-items-center bg-e63946 c-f1faee"
             data-bs-dismiss="modal">Undo</button>
           <button type="button" class="btn bg-457b9d c-f1faee" data-bs-dismiss="modal" onclick="refreshForm()">Create Another</button>
           <button type="button" class="btn bg-457b9d c-f1faee" data-bs-dismiss="modal"><a
