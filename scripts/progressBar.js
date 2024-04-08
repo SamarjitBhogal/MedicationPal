@@ -19,7 +19,20 @@ function setProgressBar(collection1, collection2) {
                         })    
                     })
                 updateProgressBar();
-            })
+            });
+
+            allEntries.forEach(async doc => {
+                await doc.ref.collection(collection2).where("day", "==", "daily").get().then(
+                    allSchedule => {
+                        allSchedule.forEach(async doc => {
+                            medicineItem += 1;
+                            if (doc.data().status == true){
+                                doneItem += 1;
+                            }
+                        })    
+                    })
+                updateProgressBar();
+            });
         })      
     })
 };

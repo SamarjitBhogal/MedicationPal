@@ -34,12 +34,9 @@ document.getElementById('remove1').addEventListener('click', () => {
 var imageFile1;
 //event listener for the file input
 document.getElementById("medImg-1").addEventListener('change', (e) => {
-        console.log("file input1 change noticed.");
         imageFile1 = e.target.files[0];
         // displaying conformation message in HTML:
         document.getElementById("image-conf-msg").toggleAttribute("hidden");
-
-        // make image upload cancel sequence
 });
 
 // Reference to the collection
@@ -48,8 +45,6 @@ var colMedicationRef = db.collection('MedicationInfo');
 // Event listener for form submission
 document.getElementById('medicationForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
-
-    console.log("Form submitted"); // Debugging
 
     // Get form data
     const userID = firebase.auth().currentUser.uid;
@@ -125,7 +120,8 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
             // adding a daily schedule
             colMedicationRef.doc(docRefMedication.id).collection('scheduleInfo').add({
                 time: timeAsNumber,
-                status: false
+                status: false,
+                day: "daily"
             }).then(() => {
                 console.log("daily schedule added.");
             }).catch((e) => {
@@ -194,7 +190,6 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
 function uploadImage(docID) {
     if(imageFile1) {
         putAndUpdate(imageFile1, docID);
-        console.log("Uploaded image1.");
     }
 }
 
@@ -203,9 +198,7 @@ function putAndUpdate(img, docID) {
     fireStorageImageLocation = storage.ref("images/" + docID + ".jpg");
 
     fireStorageImageLocation.put(img).then(() => {
-        console.log("put images.");
         fireStorageImageLocation.getDownloadURL().then((url) => {
-            console.log("downloaded URL.");
             colMedicationRef.doc(docID).update({
                 "image": url
             }).then(() => {

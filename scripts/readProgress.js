@@ -6,21 +6,19 @@ function readProgressDynamically(collection) {
             .then(allEntries => {
                 allEntries.forEach(async doc => { //iterate thru each doc
                     var name = doc.data().name;
-                    var type = doc.data().type;
-                    var dose = doc.data().dose + " Pills";
-                    var time = doc.data().timeNum;
-                    var DaysName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    let mediTime = new Date();
+                    const offset = mediTime.getTimezoneOffset()
+                    mediTime = new Date(mediTime.getTime() - (offset*60*1000))
                     await doc.ref.collection("scheduleInfo").where("status", "==", true).get().then(
                         allEntries => {
-                            allEntries.forEach(doc => {
-                                var days = DaysName[doc.data().day];
+                            allEntries.forEach(doc1 => {
                                 var tr = document.createElement('tr');
                                 var th = tr.appendChild(document.createElement('th'));
                                 th.innerHTML = name;
                                 var td4 = tr.appendChild(document.createElement('td'));
-                                td4.innerHTML = days;
+                                td4.innerHTML = mediTime.toISOString().split('T')[0];
                                 var td5 = tr.appendChild(document.createElement('td'));
-                                td5.innerHTML = time;
+                                td5.innerHTML = getTime(doc);
                                 document.getElementById("History-go-here").appendChild(tr);
                             }
                             )
@@ -30,6 +28,21 @@ function readProgressDynamically(collection) {
                 })
             })
     })
+}
+
+function getTime(doc) {
+    let mediTime = new Date(doc.data().time.seconds * 1000);
+    let mediHours = mediTime.getHours();
+    let mediMinutes = mediTime.getMinutes();
+    if (doc.data().timeNum - 1200 < 0) {
+        //the AM assignment
+        mediTime = mediHours + ":" + mediMinutes + " AM";
+    } else {
+        //the PM assignment
+        // checks if time is greater than or equal to 1300 and minus 12 to display 12 hour time format
+        doc.data().timeNum >= 1300 ? mediTime = (mediHours - 12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
+    }
+    return mediTime;
 }
 
 readProgressDynamically("MedicationInfo");  //input param is the name of the collection
