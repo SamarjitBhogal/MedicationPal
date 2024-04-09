@@ -55,29 +55,17 @@ function displayDailyEntries(entry) {
         if (!schedules.empty) {
             schedules.forEach((scheDaily) => {
                 // defining data needed to display entry
-                let mediTime = new Date(entry.data().time.seconds * 1000);
                 let newEntry = entryTemp.content.cloneNode(true);
                 let mediName = entry.data().name;
                 let mediDose = entry.data().dose;
-                let mediHours = mediTime.getHours();
-                let mediMinutes = ((mediTime.getMinutes() < 10)? "0" + mediTime.getMinutes() : mediTime.getMinutes());
                 let mediStatus;
-
-                if (entry.data().timeNum - 1200 < 0) {
-                    //the AM assignment
-                    mediTime = mediHours + ":" + mediMinutes + " AM";
-                } else {
-                    //the PM assignment
-                    // checks if time is greater than or equal to 1300 and minus 12 to display 12 hour time format
-                    entry.data().timeNum >= 1300 ? mediTime = (mediHours - 12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
-                }
 
                 mediStatus = scheDaily.data().status ? "Completed" : "Not Yet Taken";
 
                 newEntry.querySelector('.entry-btn').id = "entry-" + scheDaily.id;
                 newEntry.querySelector('.entry-card').id = "entry-card-" + scheDaily.id;
                 newEntry.querySelector('.medi-time').id = "entry-time-" + scheDaily.id;
-                newEntry.querySelector('.medi-time').innerHTML = mediTime;
+                newEntry.querySelector('.medi-time').innerHTML = getTime(entry);
                 newEntry.querySelector('#medi-name').innerHTML = mediName;
                 newEntry.querySelector('#medi-dose').innerHTML = mediDose;
                 newEntry.querySelector('#medi-status').innerHTML = mediStatus;
@@ -110,29 +98,17 @@ function displaySelectDayEntries(entry) {
             if (!schedules.empty) {
                 //displaying the entries that occur today ONLY
                 schedules.forEach((scheSelect) => {
-                    let mediTime = new Date(entry.data().time.seconds * 1000);
                     let newEntry = entryTemp.content.cloneNode(true);
                     let mediName = entry.data().name;
                     let mediDose = entry.data().dose;
-                    let mediHours = mediTime.getHours();
-                    let mediMinutes = ((mediTime.getMinutes() < 10)? "0" + mediTime.getMinutes() : mediTime.getMinutes());
                     let mediStatus;
-
-                    if (entry.data().timeNum - 1200 < 0) {
-                        //the AM assignment
-                        mediTime = mediHours + ":" + mediMinutes + " AM";
-                    } else {
-                        //the PM assignment
-                        // checks if time is greater than or equal to 1300 and minus 12 to display 12 hour time format
-                        entry.data().timeNum >= 1300 ? mediTime = (mediHours - 12) + ":" + mediMinutes + " PM" : mediTime = mediHours + ":" + mediMinutes + " PM";
-                    }
 
                     mediStatus = scheSelect.data().status ? "Completed" : "Not Yet Taken";
 
                     newEntry.querySelector('.entry-btn').id = "entry-" + scheSelect.id;
                     newEntry.querySelector('.entry-card').id = "entry-card-" + scheSelect.id;
                     newEntry.querySelector('.medi-time').id = "entry-time-" + scheSelect.id;
-                    newEntry.querySelector('.medi-time').innerHTML = mediTime;
+                    newEntry.querySelector('.medi-time').innerHTML = getTime(entry);
                     newEntry.querySelector('#medi-name').innerHTML = mediName;
                     newEntry.querySelector('#medi-dose').innerHTML = mediDose;
                     newEntry.querySelector('#medi-status').innerHTML = mediStatus;
@@ -230,9 +206,7 @@ function handleEntryModal(entryRef, scheduleRef, statusAsString, status) {
             }).catch((e) => {
                 console.error("Could not update status: ", e);
             });
-    });
-
-    
+    });    
 }
 
 function getTime(doc) {
@@ -253,7 +227,6 @@ function getTime(doc) {
 function doctersInfo() {
     firebase.auth().onAuthStateChanged(user => {
         const userID = user.uid;
-        console.log("doctah is running");
 
         // Reference to the Firestore database
         const db = firebase.firestore();
@@ -302,7 +275,7 @@ function updateDateTime() {
     const currentDateTime = now.toLocaleString();
 
     // update the `textContent` property of the `span` element with the `id` of `datetime`
-    document.querySelector('#datetime').textContent = currentDateTime;
+    //document.querySelector('#datetime').textContent = currentDateTime;
     var d = new Date(); // for now
     const hr = d.getHours(); // => 
     const min = d.getMinutes(); // => 
@@ -311,7 +284,6 @@ function updateDateTime() {
 
     combi = "" + hr + min;
     typeof Number(combi);
-    console.log(combi);
 }
 
 // call the `updateDateTime` function every second
@@ -328,12 +300,9 @@ function notifPop(collection) {
         const currentDateTime = now.toLocaleString();
 
         // update the `textContent` property of the `span` element with the `id` of `datetime`
-        document.querySelector('#datetime').textContent = currentDateTime;
+        //document.querySelector('#datetime').textContent = currentDateTime;
 
         const userID = user.uid;
-        //initialize time
-        const time =
-            console.log("notif is running");
 
         // Reference to the Firestore database
         const db = firebase.firestore();
@@ -354,20 +323,17 @@ function notifPop(collection) {
                 const currentDateTime = now.toLocaleString();
 
                 // update the `textContent` property of the `span` element with the `id` of `datetime`
-                document.querySelector('#datetime').textContent = currentDateTime;
+                //document.querySelector('#datetime').textContent = currentDateTime;
                 var d = new Date(); // for now
                 const hr = d.getHours(); // => getting hours of the current time
                 const min = d.getMinutes(); // =>  getting minutes of the current time
                 const sec = d.getSeconds();
-
-                console.log("current: " + hr + " " + min + " " + sec);
 
                 //concatenating both of them together
                 combi = "" + hr + min;
                 //typecast that to a number
                 typeof Number(combi);
                 //print out to see current number
-                console.log(combi);
 
 
                 db.collection(collection).where("user", "==", userid).get()
@@ -385,11 +351,11 @@ function notifPop(collection) {
 
                             if (milliSec - currMilliSec > 0) {
                                 setTimeout(function() {
-                                    //alert(doc.data().name + "hehhehehhe");
                                     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-                                    document.getElementById("medi-name-nofi").innerHTML = doc.data().name;
-                                    document.getElementById("medi-time-nofi").innerHTML = getTime(doc);
+                                    
                                     toastBootstrap.show();
+                                    document.getElementById("medi-name-nofi").innerHTML = doc.data().name;
+                                    document.getElementById("medi-dose-nofi").innerHTML = doc.data().dose;
                                 }, milliSec - currMilliSec);
                             }
                         })
