@@ -33,13 +33,14 @@ function setProgressBar(collection1, collection2) {
                     })
                 updateProgressBar();
             });
+            updateProgressBar();
         })      
     })
 };
 
 function updateProgressBar() {
     // Check if both medicineItem and doneItem are defined before calculating ratio
-    if (typeof medicineItem !== 'undefined' && typeof doneItem !== 'undefined') {
+    if (typeof medicineItem !== 'undefined' && typeof doneItem !== 'undefined' && medicineItem != 0) {
         var ratio = doneItem / medicineItem * 100;
         document.getElementById("Progress-bar-here").setAttribute('style','width:'+ratio+'%');
         if (ratio == 0) {
@@ -50,7 +51,10 @@ function updateProgressBar() {
         } else if (ratio <= 100) {
             document.getElementById("progress-msg").innerHTML = "Well done! Keep up the good work!";
         }
+    } else {
+        document.getElementById("progress-msg").innerHTML = "Create an entry to start tracking your progress!";
     }
+        
 };
 
 setProgressBar("MedicationInfo","scheduleInfo");

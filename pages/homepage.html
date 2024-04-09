@@ -78,11 +78,7 @@
 
         <hr class="mx-3">
         <div class="doc-info bg-a8dadc p-4 mt-3 mb-3 rounded-4 text-center mx-4">
-            <p>
-                <span> <b>
-                        Your Doctor's Information:
-                </span> </b>
-            </p>
+            <h5 class="mb-3">Your Doctor's Information:</h5>
             <p>
                 <span id="doctor-info-here">
 
@@ -98,7 +94,8 @@
                     style="width: 0%"></div>
             </div>
             <p class="mb-3"><span id="progress-msg"></span></p>
-            <button type="button" class="btn bg-457b9d c-f1faee remove-border prog-btn"><a class="c-f1faee" href="/pages/progress.html">View details</a></button>
+            <button type="button" class="btn bg-457b9d c-f1faee remove-border prog-btn"><a class="c-f1faee"
+                    href="/pages/progress.html">View details</a></button>
         </div>
     </div>
 
@@ -147,6 +144,20 @@
         </div>
     </div>
 
+    <!-- Notification for medication -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div class="toast-header">
+                <div><span class="material-symbols-outlined">pill</span></div>
+                <strong class="me-auto">It is time to take your medication!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Medication: <span id="medi-name-nofi">name</span><br>At: <span id="medi-time-nofi">0:00 AM</span>
+            </div>
+        </div>
+    </div>
+
     <div id="footer-placeholder"></div>
 
     <script src="/scripts/firebaseAPI_BBY06.js"></script>
@@ -154,7 +165,6 @@
     <script src="/scripts/main.js"></script>
     <script src="/scripts/homepageEntries.js"></script>
     <script src="/scripts/progressBar.js"></script>
-    <!-- <script src="/scripts/timer.js"></script> -->
 </body>
 
 </html>
