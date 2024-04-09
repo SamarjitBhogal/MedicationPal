@@ -145,7 +145,6 @@ document.getElementById('medicationForm').addEventListener('submit', function(ev
         } else {
             console.log("No schedule type is defined! Schedule doc not created!");
         }
-        console.log("Medication entry written with ID: ", docRefMedication.id);
         //upload the image to Storage on Firebase
         uploadImage(docRefMedication.id);
         // gives modal feedback of entry being created with a function call.

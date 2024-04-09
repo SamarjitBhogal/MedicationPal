@@ -134,7 +134,6 @@ function displaySelectDayEntries(entry) {
 }
 
 function displayNoEntryToday() {
-    console.log("displayNoEntryToday has been called");
     //display msg
     if (!document.getElementById("MedicationInfo-display").hasChildNodes()) {
         let heading = document.createElement("h5");
