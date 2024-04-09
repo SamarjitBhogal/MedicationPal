@@ -80,6 +80,33 @@
         </div>
     </div>
 
+    <!-- Notification for medication -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x pt-5 mt-5">
+        <div id="liveToast" class="toast bg-e63946 rounded-4 p-2" role="alert" aria-live="assertive" aria-atomic="true"
+            data-bs-autohide="false">
+            <div class="toast-header rounded-4 bg-a8dadc c-1d3557">
+                <div class="me-3"><span class="material-symbols-outlined">
+                        timer
+                    </span></div>
+                <strong class="me-auto fs-4">It is time to take your medication!</strong>
+            </div>
+            <div class="toast-body fs-5">
+                <b>Medication:</b> <span id="medi-name-nofi">name</span><br>
+                <b>Take: <span id="medi-dose-nofi"></span></b> Pill(s)
+            </div>
+            <div class="d-flex justify-content-evenly align-items-center">
+                <div class="text-center fs-5">
+                    <button type="button"
+                        class="btn d-flex justify-content-center align-items-center bg-457b9d c-f1faee mb-2"
+                        data-bs-dismiss="toast" aria-label="Close"><span class="material-symbols-outlined">
+                            done
+                        </span></button>
+                    <p>OK</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="footer-placeholder"></div>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
@@ -89,6 +116,7 @@
     <script src="../scripts/firebaseAPI_BBY06.js"></script>
     <script src="../scripts/navSkeleton.js"></script>
     <script src="/scripts/notification.js"></script>
+    <script src="/scripts/notificationManager.js"></script>
 </body>
 
 </html>
