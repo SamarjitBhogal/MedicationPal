@@ -16,7 +16,8 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 * Firebase 8.0 (BAAS - Backend as a Service)
 	* Firestore
  	* Cloud storage
-  	* Firebase Hosting 
+  	* Firebase Hosting
+  	* Authentication
 
 ## 4. Complete setup/installion/usage
 Here are the steps ...
@@ -48,34 +49,37 @@ Content of the project folder:
 ```
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
-├── 404.html   a page that is displayed when a 404 error occurs
-├──.firebaserc            
-├── README.md
-├── index.html the page where we first run our application
+├── README.md		     # the readme file of this project
+├── index.html               # the page where we first run our application
+├── favicon-32x32.png        # the favicon of MedicationPal
+├── package-lock.json	     # pack-lock.json configuration file
+├── package.json             # project dependencies 
 
 It has the following subfolders and files:
-├── .firebase            
-	this contains the hosting cache for firebase   
 ├── images                   # Folder for images
-	/logo.png  (Logo designed by Sam)     
-	/palette1.png  (the colors we used to design our website)        
+	/logo.png                   (Logo designed by Sam)     
+	/palette1.png               (the colors we used to design our website)
+	/image.webp                 (the landing page image)
+	/view-list-svgrepo-com.svg  (view entries icon in hot-bar)
+	/home-20-svgrepo-com.svg    (home icon in hot-bar)
+	/heart-plus-svgrepo-com.svg (create entry icon in hotbar
 ├── scripts                  # Folder for scripts
-	/authentication.js   #the script we used to know if a user is logged in
-	/createEntryServeice.js #script for creating entries 
-	/firebaseAPI_BB06.js # our firebase API
-	/homepageEntries.js  # script to display everything on the homepage
-	/logoutAuth.js       # script to logout
-	/main.js             # check if a user is logged in
-	/medicationPalsService.js # a script for the MedicationPal feature
-	/navSkeleton.js      # For the navigation bar skeleton to be displayed on all pages where used
-	/notifiactionManager.js  # For sending out notifications at a certain time
-	/profile.js          # for getting doctors information
-	/progressBar.js      # for displaying the progress bar
-	/readEntryService.js # to read entries
-	/readProgress.js     # for reading the progress bars data
-	/schedule.js         # to display our entries on the schedule page
-	/timer.js            # function to displaymodal on certain time
-├── styles                   # Folder for styles
+	/authentication.js         #the script we used to know if a user is logged in
+	/createEntryServeice.js    #script for creating entries 
+	/firebaseAPI_BB06.js       # our firebase API
+	/homepageEntries.js        # script to display everything on the homepage
+	/logoutAuth.js             # script to logout
+	/main.js                   # check if a user is logged in
+	/medicationPalsService.js  # a script for the MedicationPal feature (not in final version)
+	/navSkeleton.js            # For the navigation bar skeleton to be displayed on all pages where used
+	/notifiactionManager.js    # For sending out notifications at a certain time
+	/profile.js                # for getting doctors information
+	/progressBar.js            # for displaying the progress bar
+	/readEntryService.js       # to read entries
+	/readProgress.js           # for reading the progress bars data
+	/schedule.js               # to display our entries on the schedule page
+	/timer.js                  # function to displaymodal on certain time
+├── styles                   # Folder for styles of different pages
 	/craeteEntryStyle.css
 	/doctorStyle.css
 	/faqStyle.css
@@ -84,33 +88,41 @@ It has the following subfolders and files:
 	/medicationPalsStyle.css
 	/notificationStyle.css
 	/progresStyle.css
-	/style.css
-	/tableStyle.css
+	/style.css                 # main style file
+	/tableStyle.css            # style for the table present in the schedule page
 
 	these are the styles for the individual pages we have on our application
 ├── pages                    # Folder for pages
-	/create-entry.html   # the page for creating a medication entry
-	/doc-info.html       # the page for changing doctors information
-	/faq.html            # the page for viewing frequently asked questions
-	/homepage.html       # our main page, where all of our main tasks happen. also can view all sorts of data here.
-	/login.html          # the login page
-	/medication-pals.html # the page to send your information to another PAL
-	/notifications.html  # the page to change what type of notifications you can receive
-	/progress.html       # the page to check your medication progress
-	/schedule.html       #  the page to view schedules
-	/template.html       # a template page for when we made new pages
-	/viewentries.html    # a view entries page, for viewing all medications you had made
+	/create-entry.html         # the page for creating a medication entry
+	/doc-info.html             # the page for changing doctors information
+	/faq.html                  # the page for viewing frequently asked questions
+	/homepage.html             # our main page, where all of our main tasks happen. also can view all sorts of data here.
+	/login.html                # the login page
+	/medication-pals.html      # the page to send your information to another PAL (not in final app release)
+	/notifications.html        # the page to change what type of notifications you can receive
+	/progress.html             # the page to check your medication progress
+	/schedule.html             #  the page to view schedules
+	/template.html             # a template page for when we made new pages
+	/viewentries.html          # a view entries page, for viewing all medications you had made
 
-	These are our individual pagess we had for out application
 ├── components               # Folder for components
 	/create-entry-btn.html
-	/footer.html         # a footer that has a small trademark, and year
-	/hot-bar.html        # a hotbar at the bottom of our page for quick access
-	/markerBtn.html      # a component for a marker button next to the medication entries
+	/footer.html               # a footer that has a small trademark, and year
+	/hot-bar.html              # a hotbar at the bottom of our page for quick access
+	/markerBtn.html            # a component for a marker button next to the medication entries
 	/navbar_before_login.html  # a component for our navbar before logging in (it much more limited options)
-	/navbar.html         # a component for our nav bar
-	/undoBtn.html        #  a component for changing a marker button to an undo button
+	/navbar.html               # a component for our nav bar
+	/undoBtn.html              # a component for changing a marker button to an undo button
 
+Firebase hosting files: 
+├── .firebase
+	/hosting..cache
+├── .firebaserc
+├── 404.html
+├── firebase.json
+├── firestore.indexes.json
+├── firestore.rules
+├── storage.rules
 
 ```
 
