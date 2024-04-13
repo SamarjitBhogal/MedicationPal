@@ -106,7 +106,6 @@ It has the following subfolders and files:
 	/viewentries.html          # a view entries page, for viewing all medications you had made
 
 ├── components               # Folder for components
-	/create-entry-btn.html
 	/footer.html               # a footer that has a small trademark, and year
 	/hot-bar.html              # a hotbar at the bottom of our page for quick access
 	/markerBtn.html            # a component for a marker button next to the medication entries
