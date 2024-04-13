@@ -1,4 +1,4 @@
-# Medication Pal
+# MedicationPal
 
 ## 1. Project Description
 Our team, BBY06, is developing an application called MedicationPal™ which assists people who forget to take their medication or supplements of any kind by reminding them and allowing them to keep track. 
