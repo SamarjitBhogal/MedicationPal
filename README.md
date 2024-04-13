@@ -7,6 +7,7 @@ Our team, BBY06, is developing an application called MedicationPal™ which assi
 * Hi, my name is Ben. Github is very interesting and i am excited to learn how to utilize it
 * Hi my name is Samarjit Bhogal. I am excited to develop MedicationPal and learn new things along the way.
 * Hi, my name is Xiaojuan Wang. I am excited to start workiing on this project.
+* One thing to note is that the contributor "jeven-on-road" is a secondary account of Nikkki99
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
